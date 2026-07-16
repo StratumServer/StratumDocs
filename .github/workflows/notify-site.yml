@@ -1,0 +1,15 @@
+name: Notify website
+on:
+  push:
+    branches: [main]
+jobs:
+  rebuild-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger website rebuild
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.SITE_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/StratumServer/StratumWebsite/dispatches \
+            -d '{"event_type":"docs-updated"}'
