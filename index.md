@@ -9,14 +9,16 @@ Players do not install anything. You run Stratum for the Vintage Story version y
 
 ## Start here
 
-If this is your first time, read [Installation](/docs/getting-started/installation), then run the server once so it can fetch the matching vanilla files. [First launch](/docs/getting-started/first-launch) covers what to expect on that first run.
+If this is your first time, read [Installation](/docs/getting-started/installation), then run the server once so it can prepare the matching vanilla files. [First launch](/docs/getting-started/first-launch) covers what to expect on that first run.
 
 ## Find your way around
 
-- Getting Started covers installing, the first run, and updating.
-- Configuration covers the config files and the settings you will touch most.
-- Commands lists the player, staff, and admin commands.
-- Compatibility covers version matching and running Stratum next to mods.
+- Getting Started covers installing, the first run, updating, and running the server as a service.
+- Configuration covers the config files, the settings you will touch most, performance, backups, and privacy.
+- Commands lists the player, staff, and admin commands, and the privileges that gate them.
+- Moderation covers the moderation tools, groups, kits, class changes, and the anticheat.
+- Compatibility covers version matching, mods, and the client mods policy.
+- Help covers common problems and frequent questions.
 
 ## Getting help
 
