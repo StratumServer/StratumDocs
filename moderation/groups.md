@@ -74,7 +74,7 @@ When `Groups.AlliesCountAsSameSide` is `true`, an ally relation turns friendly f
 
 ## Tags
 
-`/group admin tag <group> <text>` puts a tag in front of the group's members in chat and on nametags. A tagged staff member might read `[RED] [Admin] Alice`. Use `none` to remove a tag.
+`/group admin tag <group> <text>` puts a tag in front of the group's members in chat and on nametags. A tag is one word, up to `MaxTagLength` characters. A tagged staff member might read `[RED] [Admin] Alice`. Use `none` to remove a tag.
 
 ## Config
 
