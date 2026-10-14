@@ -56,10 +56,10 @@ With the defaults (`IntervalMinutes` of `360` and `RetainCount` of `5`), you kee
 1. Stop the server.
 2. Open the `Backups` folder and find the backup you want.
 3. In the `Saves` folder of your data folder, move the current world file out of the way, for example rename `default.vcdbs` to `default.vcdbs.bak`. Also move any `default.vcdbs-wal` and `default.vcdbs-shm` files that sit beside it, because they belong to the old world. Keep the old files until you have confirmed the restore.
-4. Copy the backup into the world's place, with the world's original name:
+4. Copy the backup into the `Saves` folder, with the world's original name. Use full paths, so the command works from any folder. Replace `<data folder>` with your data folder:
 
    ```bash
-   cp stratum-backup-default-2026-10-14_18-30-00.vcdbs default.vcdbs
+   cp "<data folder>/Backups/stratum-backup-default-2026-10-14_18-30-00.vcdbs" "<data folder>/Saves/default.vcdbs"
    ```
 
 5. Start the server.
