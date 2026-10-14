@@ -142,7 +142,7 @@ Enables or disables global or group chat channels. Use `all` to affect both at o
 /chatclear [lines]
 ```
 
-Clears visible chat history by sending blank lines. Uses the server default line count if no argument is given. Capped at 200 lines.
+Clears visible chat history by sending blank lines. Without an argument it uses `Commands.ClearChatLines` (default 80). The argument cannot exceed 200 lines.
 
 **Config key:** `Commands.ChatControl`
 
@@ -288,7 +288,7 @@ Files a report against a player. Online staff with `stratum.reports` access are 
 
 Manages the report queue.
 
-- `/reports` or `/reports list`: shows open reports
+- `/reports` or `/reports list [open|claimed|closed|all]`: shows reports, open ones by default
 - `/reports info <id>`: full details for one report
 - `/reports claim <id>`: mark a report as being handled
 - `/reports close <id> [resolution]`: close a report
