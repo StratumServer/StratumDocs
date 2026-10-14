@@ -55,7 +55,7 @@ With the defaults (`IntervalMinutes` of `360` and `RetainCount` of `5`), you kee
 
 1. Stop the server.
 2. Open the `Backups` folder and find the backup you want.
-3. Move the current world file out of the way, for example rename `default.vcdbs` to `default.vcdbs.bak`. Keep it until you have confirmed the restore.
+3. In the `Saves` folder of your data folder, move the current world file out of the way, for example rename `default.vcdbs` to `default.vcdbs.bak`. Keep it until you have confirmed the restore.
 4. Copy the backup into the world's place, with the world's original name:
 
    ```bash

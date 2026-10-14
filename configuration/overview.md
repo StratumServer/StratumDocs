@@ -10,7 +10,7 @@ Stratum keeps its own config, separate from the vanilla server config. The files
 
 ## The files
 
-Stratum writes three files into the game config folder:
+Stratum writes three files into your data folder, next to `serverconfig.json`:
 
 - `stratum.json` is the main config.
 - `stratum-commands.json` holds the command settings: which commands are on, and the privilege each one needs.
