@@ -20,7 +20,7 @@ The second is the Stratum version. Each Stratum release is tagged with the Vinta
 
 The startup log names the running version. The `/stratum version` command shows the same details while the server runs.
 
-When a newer release exists, the log warns you once at startup and then every 12 hours, with a link to the release.
+When a newer release exists, the log warns you once at startup and then again every 12 hours by default, with a link to the release. The interval is set by `UpdateChecker.CheckIntervalHours`.
 
 ## Check the port
 

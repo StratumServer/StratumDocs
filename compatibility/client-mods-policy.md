@@ -28,7 +28,7 @@ The core Vintage Story mods are always allowed.
 
 `IncludeServerUniversalMods` is `true` by default. It adds the mods the server marks as universal to the whitelist, so you do not need to list them by hand.
 
-`AllowModIds` is a list of extra mod IDs to allow. It is empty by default.
+`AllowModIds` is a list of extra mod IDs to allow. It is empty by default. Test the entry format on a test server before you rely on it, because a mod that is not matched is refused.
 
 ## Config
 

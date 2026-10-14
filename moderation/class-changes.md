@@ -10,7 +10,7 @@ order: 4
 
 ## Access
 
-`/class` needs the `stratum.classchange` privilege. `/classrequests` needs `stratum.classrequests`. The built-in moderator roles, `sumod` and `crmod`, receive `stratum.classrequests` on a fresh server. Check any role with `/roles info <rolename>`.
+`/class` needs the `stratum.classchange` privilege. `/classrequests` needs `stratum.classrequests`. The built-in moderator roles, `sumod` and `crmod`, receive `stratum.classrequests` on a fresh server. On a server that already exists, nobody has `stratum.classchange`, so `/class` does nothing for players until you grant it: `/roles grant <rolename> stratum.classchange`. Check any role with `/roles info <rolename>`.
 
 ## How a change works
 

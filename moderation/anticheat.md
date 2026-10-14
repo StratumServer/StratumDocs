@@ -8,7 +8,7 @@ order: 5
 
 The Stratum anticheat checks the server side of player actions for impossible behavior: reaching too far, breaking blocks too fast, moving too far or too fast, and similar cases. It is off by default.
 
-When it is on, it records each violation. Staff see an alert when a player reaches the alert threshold. A player's violations are kept for a while, and then they expire.
+When it is on, it records each violation. Staff see an alert when a player reaches the alert threshold. Recent violations drop out of the alert window after a while, but the punishment count does not. See Punishments below.
 
 ## Turn it on
 
@@ -40,7 +40,7 @@ Each check has a slack value. The slack is the margin of error that lag and norm
 
 ## Punishments
 
-Punishments are off by default, under `Anticheat.Punishments`. They escalate with the number of confirmed violations:
+Punishments are off by default, under `Anticheat.Punishments`. They escalate with each player's **accumulated** violation count. That count is kept across sessions and does not expire. Undoing a punishment does not reset it. Each step is applied once, when the count first reaches its threshold.
 
 | Step | Default threshold |
 | --- | --- |
@@ -49,9 +49,9 @@ Punishments are off by default, under `Anticheat.Punishments`. They escalate wit
 | Jail | 40 violations |
 | Ban | 60 violations, for 720 hours (30 days) |
 
-The server can also wipe the inventory instead of dropping it, with `WipeInsteadOfDrop`. Most checks can kick a player for repeated violations. Kicks are off by default, through `KickConfirmedCheats`. The block entity range check has no kick setting.
+The server can also wipe the inventory instead of dropping it, with `WipeInsteadOfDrop`. A wipe deletes the items, and nothing brings them back. Leave it `false`, which is the default, unless you have decided to accept that risk for a false positive. Most checks can kick a player for repeated violations. Kicks are off by default, through `KickConfirmedCheats`. The block entity range check has no kick setting.
 
-These thresholds are defaults, not advice. A busy server may want higher numbers, and a server with few players may want lower ones. Review the staff alerts before you rely on punishments.
+The thresholds must rise in order: freeze is never lower than the drop threshold, jail never lower than freeze, and ban never lower than jail. If you raise one, the ones after it rise with it. These thresholds are defaults, not advice. A busy server may want higher numbers, and a server with few players may want lower ones. Review the staff alerts before you rely on punishments.
 
 ## False positives
 
