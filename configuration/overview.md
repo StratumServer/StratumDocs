@@ -43,6 +43,6 @@ The main config is split into sections. These are the ones most servers touch:
 - `Hardening`, `PacketLimits`, `PacketBackPressure`, and `BlockBreakGuards` for server protection.
 - `LoginProtection` and `ClientModPolicy` for join-time checks.
 - `PlayerPrivacy` for map pins and coordinates.
-- `Performance` for chunk, entity, and save behavior. [Performance tuning](/docs/configuration/performance-tuning) and [Entity tick throttling](/docs/configuration/entity-ticking) cover it.
+- `Performance` for chunk, entity, and save behavior. It lives in `stratum-performance.json`. [Performance tuning](/docs/configuration/performance-tuning) and [Entity tick throttling](/docs/configuration/entity-ticking) cover it.
 - `Diagnostics` for startup logging and preflight checks.
 - `Backup` for scheduled world backups. [Backups and restore](/docs/configuration/backups-and-restore) explains them.
