@@ -16,7 +16,7 @@ Chat rate limiting is also on by default. A player can send one message every 75
 
 | Key | Default | Effect |
 | --- | --- | --- |
-| `Chat.Enabled` | `true` | Turns Stratum chat on |
+| `Chat.Enabled` | `true` | Turns Stratum chat formatting on |
 | `Chat.LinkifyUrls` | `true` | Makes URLs in chat clickable |
 | `Chat.Global.Enabled` | `true` | Turns global chat on |
 | `Chat.Groups.Enabled` | `true` | Turns group chat on |

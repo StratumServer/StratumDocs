@@ -33,7 +33,7 @@ Edit the file, then run `/stratum reload` in-game. Without the reload, the edit 
 
 Stratum keeps the settings in memory. Several actions write all three files from memory, including `/stratum set`, `/stratum save`, and the `/friendlyfire` and `/pvecombat` toggles. An edit that you have not reloaded is overwritten at the next write.
 
-Some settings take effect only at startup. Restart the server after a change to one of them. [Performance tuning](/docs/configuration/performance-tuning) notes the ones that apply at startup.
+Some settings take effect only at startup, such as the Windows timer resolution. Restart the server after a change to one of them.
 
 ## Sections
 

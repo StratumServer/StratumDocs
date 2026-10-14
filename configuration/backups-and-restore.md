@@ -12,7 +12,6 @@ Stratum can make world backups on a schedule. Backups are off by default.
 
 ```
 /stratum set Backup.Enabled true
-/stratum save
 ```
 
 Or edit `stratum.json`:
@@ -29,15 +28,15 @@ Or edit `stratum.json`:
 
 A backup uses the SQLite backup API of the server, so it copies a consistent snapshot of the world. It runs on a background thread, and the server keeps ticking while it runs. If a backup is still running when the next one is due, the next one is skipped.
 
-The first backup runs 60 seconds after the server starts. After that, one backup runs every `IntervalMinutes`.
+The first backup runs about 1 to 1.5 minutes after the server starts. The scheduler checks every 30 seconds, so the timing can vary by that much. After that, one backup runs every `IntervalMinutes`.
 
-Backup files go to the server's `Backups` folder, not next to the world file. Each file is named after the world and the time it was made:
+Backup files go to the `Backups` folder in your data folder, not next to the world file. Each file is named after the world and the time it was made:
 
 ```
 stratum-backup-<worldname>-<timestamp>.vcdbs
 ```
 
-For example, `stratum-backup-myworld-2026-10-14_18-30-00.vcdbs`.
+For example, for a world named `default`: `stratum-backup-default-2026-10-14_18-30-00.vcdbs`.
 
 After each successful backup, Stratum deletes the oldest of its own backup files beyond `RetainCount`. It does not touch backup files it did not create.
 
@@ -56,11 +55,11 @@ With the defaults (`IntervalMinutes` of `360` and `RetainCount` of `5`), you kee
 
 1. Stop the server.
 2. Open the `Backups` folder and find the backup you want.
-3. Move the current world file out of the way, for example rename `world.vcdbs` to `world.vcdbs.bak`. Keep it until you have confirmed the restore.
+3. Move the current world file out of the way, for example rename `default.vcdbs` to `default.vcdbs.bak`. Keep it until you have confirmed the restore.
 4. Copy the backup into the world's place, with the world's original name:
 
    ```bash
-   cp stratum-backup-myworld-2026-10-14_18-30-00.vcdbs myworld.vcdbs
+   cp stratum-backup-default-2026-10-14_18-30-00.vcdbs default.vcdbs
    ```
 
 5. Start the server.

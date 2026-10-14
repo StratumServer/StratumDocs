@@ -46,7 +46,7 @@ Sends anonymous statistics to the Stratum statistics endpoint. See [Privacy and 
 | `Hardening.PreserveVanillaProtocol` | `true` | Protocol compatibility switch. Leave at the default |
 | `Hardening.PacketMonitoring` | `true` | Monitors packet traffic. `/stratum packets` shows the current state |
 | `Hardening.BlockBreakGuards` | `true` | Master switch for block break validation. Its settings are in `BlockBreakGuards` |
-| `Hardening.EntityGuards` | `false` | Entity guard switch |
+| `Hardening.EntityGuards` | `false` | Turns the entity guard on. Off by default |
 | `Hardening.EntityPacketRangeGuard` | `true` | Limits entity packets to players in range |
 | `Hardening.BlockEntityPacketRangeGuard` | `true` | Limits block entity packets to players in range |
 
@@ -101,7 +101,7 @@ Off by default. Controls which client mods a player may join with.
 
 ## LoginProtection
 
-Gives new players temporary damage immunity after they join.
+Gives players temporary damage immunity when they join.
 
 | Key | Default | Effect |
 | --- | --- | --- |
@@ -119,7 +119,7 @@ Off by default. Hides map pins and rounds coordinates. Nothing else in this sect
 | `PlayerPrivacy.Enabled` | `false` | Turns the privacy controls on |
 | `PlayerPrivacy.HideMapPins` | `true` | Hides players' map pins from each other |
 | `PlayerPrivacy.AllowGroupMapVisibility` | `true` | Lets members of the same group see each other's pins |
-| `PlayerPrivacy.CoordinateSnapBlocks` | `0` | Rounds the coordinates other players see to a grid of this many blocks. `0` means no rounding. Staff, and group members when `AllowGroupMapVisibility` is on, see exact coordinates |
+| `PlayerPrivacy.CoordinateSnapBlocks` | `0` | Rounds the coordinates other players see to a grid of this many blocks. `0` means no rounding. It has no effect while `HideMapPins` is `true`. Staff, and group members when `AllowGroupMapVisibility` is on, see exact coordinates |
 
 ## CrowdSpawn
 

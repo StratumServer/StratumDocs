@@ -21,16 +21,15 @@ Each report is a JSON POST with these fields:
 - `os`: `windows`, `linux`, `macos`, or `other`.
 - `reportedAtUtc`: the UTC time of the report.
 
-Reports do not include player names, the server name, the server address, or the world name. The request still reaches the endpoint from your server's IP address, as any web request does.
+Reports do not include player names, the server name, the server address, or the world name. The request still reaches the endpoint from your server's IP address, as any web request does. It also sends a `User-Agent` header with the Stratum version.
 
 To turn reporting off:
 
 ```
 /stratum set ServerStats.Enabled false
-/stratum save
 ```
 
-Or set `"Enabled": false` in the `ServerStats` section of `stratum.json` before the first start.
+You can also set `"Enabled": false` in the `ServerStats` section of `stratum.json`, then restart. The first report goes out soon after startup, so a server that starts with reporting on sends one report before you can turn it off.
 
 Generate a new ID by deleting the `ServerId` value in `stratum.json` and restarting the server.
 
@@ -45,13 +44,12 @@ Generate a new ID by deleting the `ServerId` value in `stratum.json` and restart
 
 Stratum checks GitHub for a newer release at startup and every 12 hours. When a newer release exists, online staff get an in-game message.
 
-The check makes one GET request to `https://api.github.com/repos/StratumServer/Stratum/releases/latest`. The request carries no data about your server, but GitHub sees your server's IP address and the standard request headers.
+The check makes one GET request to `https://api.github.com/repos/StratumServer/Stratum/releases/latest`. The request carries no data about your server, but GitHub sees your server's IP address and the standard request headers, including a `User-Agent` with the Stratum version.
 
 To turn the check off:
 
 ```
 /stratum set UpdateChecker.Enabled false
-/stratum save
 ```
 
 | Key | Default | Effect |
@@ -67,7 +65,6 @@ Off by default. These controls hide map pins and round the coordinates other pla
 
 ```
 /stratum set PlayerPrivacy.Enabled true
-/stratum save
 ```
 
 | Key | Default | Effect |
@@ -75,7 +72,7 @@ Off by default. These controls hide map pins and round the coordinates other pla
 | `PlayerPrivacy.Enabled` | `false` | Turns the controls on |
 | `PlayerPrivacy.HideMapPins` | `true` | Hides players' map pins from each other |
 | `PlayerPrivacy.AllowGroupMapVisibility` | `true` | Members of the same group still see each other's pins |
-| `PlayerPrivacy.CoordinateSnapBlocks` | `0` | Rounds the coordinates other players see to a grid of this many blocks. `0` means no rounding |
+| `PlayerPrivacy.CoordinateSnapBlocks` | `0` | Rounds the coordinates other players see to a grid of this many blocks. `0` means no rounding. It has no effect while `HideMapPins` is `true`, because the pins are hidden |
 
 Staff can bypass these controls. The privilege is `stratum.privacy.bypass`, and it is set under `PlayerPrivacy.StaffOverride`.
 

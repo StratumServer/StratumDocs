@@ -18,7 +18,7 @@ This page covers `stratum-performance.json`, the file that holds the load settin
 /stratum set Performance.Timings.EnabledOnStartup true
 ```
 
-Restart the server afterwards.
+Restart the server afterwards. While the server runs, `/stratum timings start`, `/stratum timings stop`, and `/stratum timings reset` control the timings.
 
 ## Chunk sending
 
