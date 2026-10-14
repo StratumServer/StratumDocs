@@ -39,7 +39,7 @@ Work through these in order:
 
 ## TPS is low
 
-Check where the time goes before you change anything. Run `/stratum timings start`, let it run during a busy period, then `/stratum timings stop`. The report shows which system takes the most time. [Performance tuning](/docs/configuration/performance-tuning) lists the settings for each system, and [Entity tick throttling](/docs/configuration/entity-ticking) covers entity load.
+Check where the time goes before you change anything. Run `/stratum timings start`, let it run during a busy period, then `/stratum timings stop`. Run `/stratum timings report` to see which system takes the most time. [Performance tuning](/docs/configuration/performance-tuning) lists the settings for each system, and [Entity tick throttling](/docs/configuration/entity-ticking) covers entity load.
 
 ## A setting did not stick
 

@@ -23,6 +23,7 @@ Turn the anticheat on with `Anticheat.Enabled` in `stratum.json`. Each check has
 | Check | Looks for |
 | --- | --- |
 | Block reach | Breaking or placing blocks from further away than a player can reach. |
+| Block entity range | Interacting with a block entity, such as a chest, from too far away. |
 | Entity reach | Attacking or interacting with an entity from too far away. |
 | Block break progress | Breaking blocks faster than the tools allow. |
 | Movement | Moving too far or too fast, including step height and acceleration. |
@@ -43,12 +44,12 @@ Punishments are off by default, under `Anticheat.Punishments`. They escalate wit
 
 | Step | Default threshold |
 | --- | --- |
-| Drop the player's inventory | 15 violations, if `DropInventoryAfterFlags` applies |
+| Drop the player's inventory | 15 violations |
 | Freeze | 25 violations |
 | Jail | 40 violations |
 | Ban | 60 violations, for 720 hours (30 days) |
 
-The server can also wipe the inventory instead of dropping it, with `WipeInsteadOfDrop`. Each check can kick the player for repeated violations. Kicks are off by default, through `KickConfirmedCheats`, and they apply after a set number of violations.
+The server can also wipe the inventory instead of dropping it, with `WipeInsteadOfDrop`. Most checks can kick a player for repeated violations. Kicks are off by default, through `KickConfirmedCheats`. The block entity range check has no kick setting.
 
 These thresholds are defaults, not advice. A busy server may want higher numbers, and a server with few players may want lower ones. Review the staff alerts before you rely on punishments.
 

@@ -45,7 +45,7 @@ Locks survive a restart and apply to offline players. A timed lock ends the next
 
 ## Roster freeze
 
-`/group admin freeze <group> on` stops the roster from changing. No one can join, be invited, leave, be kicked, or disband the group. Staff commands still work. Use a freeze for the length of an event. Use locks when you only need to hold one player.
+`/group admin freeze <group> on` stops the roster from changing. Without `on` or `off`, the command toggles the freeze. No one can join, be invited, leave, be kicked, or disband the group. Staff commands still work. Use a freeze for the length of an event. Use locks when you only need to hold one player.
 
 ## Kinds
 

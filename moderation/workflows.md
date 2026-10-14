@@ -12,17 +12,17 @@ Stratum does not enforce an order. The order below is a suggestion. Your server'
 
 ## Start with a note or a warning
 
-For a first concern, record it with `/note <player> <text>`. Read the notes later with `/notes <player>`. Notes are for staff only.
+For a first concern, add a note with `/note <player> add <text>`. List a player's notes with `/note <player> list`, and remove one with `/note <player> delete <id>`. Notes are for staff only.
 
 If the behavior needs a warning, use `/warn <player> <reason>`. Check a player's warnings with `/warnings <player>`, and remove a mistaken one with `/delwarn`.
 
 ## Mute when chat is the problem
 
-`/mute <player> <duration>` stops a player from sending chat. Use `/unmute` to lift it, and `/mutestatus` to see the current mute. Durations use short forms such as `10m`, `2h`, or `7d`. `perm` keeps the mute until someone removes it.
+`/mute <player> <duration> <reason>` stops a player from sending chat. The reason is required. Use `/unmute` to lift it, and `/mutestatus` to see the current mute. Durations use short forms such as `10m`, `2h`, or `7d`. `perm` keeps the mute until someone removes it.
 
 ## Jail or freeze to hold a player in place
 
-`/setjail` sets the jail location. `/jail <player>` sends a player there, and `/unjail` releases them. `/jailstatus` shows who is jailed.
+`/setjail` sets the jail location. `/jail <player>` sends a player there, and `/unjail` releases them. `/jailstatus <player>` shows whether that player is jailed.
 
 `/freeze <player>` stops a player from moving. Use it when you need the player still while you talk to them or check something.
 
