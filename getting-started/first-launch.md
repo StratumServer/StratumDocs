@@ -6,27 +6,35 @@ categoryOrder: 1
 order: 2
 ---
 
-The first time you start Stratum it prepares the vanilla server files it needs. You do not download them yourself.
+The first start prepares the vanilla server files that Stratum needs. You do not download them yourself.
 
 ## What happens
 
-1. Stratum downloads the matching vanilla server build from the official CDN.
-2. It unpacks those files next to the launcher.
-3. It applies the patched Stratum runtime on top.
-4. The server starts.
+1. The launcher reads the release manifest for the vanilla build that the release targets.
+2. It downloads the official Vintage Story server archive and verifies it.
+3. It unpacks the archive.
+4. It writes Stratum's patched files on top.
+5. It starts the server.
 
-This runs once. Later starts go straight to running the server.
+Later starts use the prepared install. Stratum prepares again only when the Stratum version or the base Vintage Story version changes, or when you pass `--stratum-refresh`.
 
 ## Launcher flags
 
-Stratum reads a few of its own flags. Everything else is passed straight through to the server, such as `--port` and `--dataPath`.
+The launcher reads these flags. Anything else goes to the server, such as `--port` and `--dataPath`.
 
-- `--stratum-version` prints version info and exits
-- `--stratum-help` prints the launcher options and exits
-- `--stratum-refresh` re-downloads and re-extracts the vanilla assets
-- `--stratum-skip-bootstrap` skips the first-run download
-- `--stratum-no-banner` starts without the startup banner
+| Flag | Effect |
+| --- | --- |
+| `--stratum-version` | Print version information and exit |
+| `--stratum-help` | Print the launcher options and exit |
+| `--stratum-refresh` | Download and prepare the base server again |
+| `--stratum-skip-bootstrap` | Skip the first-run preparation |
+| `--stratum-prepare-only` | Prepare the install, then exit. Exits with an error if the build contains no patched files. Cannot be combined with `--stratum-skip-bootstrap` |
+| `--stratum-no-banner` | Start without the startup banner |
 
-## Data path
+## Data folder
 
-If you leave off `--dataPath`, Stratum uses the local `Data` folder next to the launcher.
+The world and settings are stored in the data folder. Without `--dataPath`, that is a `Data` folder next to `StratumServer`, and the launcher prints the path at startup. Pass `--dataPath` to choose another location.
+
+## Next steps
+
+Read the [configuration overview](/docs/configuration/overview) to change settings, and the [player commands](/docs/commands/player-commands) to see what players can use.

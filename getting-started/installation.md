@@ -6,18 +6,29 @@ categoryOrder: 1
 order: 1
 ---
 
-Stratum ships as a small launcher. You download the release for your platform, extract it, and run it. On the first start it fetches the matching vanilla server files for you.
+Stratum ships as a small launcher. You download the release for your platform, extract it, and run it. On the first start it prepares the matching vanilla server files for you.
 
 ## Requirements
 
-- A host with the .NET 10 runtime installed. The launcher is framework dependent, so the runtime has to be present.
+- The .NET 10 runtime on the host. The launcher is framework dependent, so the runtime must be installed. Check it with `dotnet --list-runtimes`. The output should include `Microsoft.NETCore.App 10.x`.
 - The Stratum release that matches your server's Vintage Story version.
 
-## Download and run
+## Download
 
-1. Open the [releases page](https://github.com/StratumServer/Stratum/releases) and download the zip for your platform. Windows builds are named `stratum-<version>-win-x64.zip` and Linux builds are `stratum-<version>-linux-x64.zip`.
-2. Extract it wherever you want the server to live.
-3. Start it.
+Each release has one zip per platform, named `stratum-<version>-<platform>.zip`:
+
+| Platform | File |
+| --- | --- |
+| Windows x64 | `stratum-<version>-win-x64.zip` |
+| Linux x64 | `stratum-<version>-linux-x64.zip` |
+| Linux ARM64 | `stratum-<version>-linux-arm64.zip` |
+
+Get the zip for your platform from the [releases page](https://github.com/StratumServer/Stratum/releases).
+
+## Run
+
+1. Extract the zip wherever you want the server to live.
+2. Start the launcher.
 
 On Windows:
 
@@ -31,8 +42,8 @@ On Linux:
 ./StratumServer
 ```
 
-The first run downloads and unpacks the matching vanilla server build, then starts the patched runtime on top. This only happens once. See [First launch](/docs/getting-started/first-launch) for the details.
+The first run prepares the vanilla server build that matches the release, then starts the patched server. Preparation runs once. [First launch](/docs/getting-started/first-launch) describes the steps.
 
 ## Data folder
 
-If you do not pass `--dataPath`, Stratum stores its world and settings in a `Data` folder next to the launcher. To use a different location, pass `--dataPath` with the path you want.
+Without `--dataPath`, the launcher uses a `Data` folder next to `StratumServer` and prints the path at startup. Pass `--dataPath` to choose another location. The launcher passes any flag it does not recognize to the server unchanged.
