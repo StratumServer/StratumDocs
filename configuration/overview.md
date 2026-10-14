@@ -13,35 +13,36 @@ Stratum keeps its own config, separate from the vanilla server config. The files
 Stratum writes three files into the game config folder:
 
 - `stratum.json` is the main config.
-- `stratum-commands.json` holds command settings.
+- `stratum-commands.json` holds the command settings: which commands are on, and the privilege each one needs.
 - `stratum-performance.json` holds the performance settings.
 
-## Changing settings
+[Config reference](/docs/configuration/config-reference) lists the main settings and their defaults.
 
-You have two ways to change settings.
+## Changing settings in-game
 
-Edit the file directly, then apply it:
+Use these commands while the server runs:
 
-1. Edit `stratum.json` or one of the sidecar files.
-2. Run `/stratum reload` in-game to load the changes.
+- `/stratum get <path>` reads a setting, for example `/stratum get Performance.Pregen.Enabled`.
+- `/stratum set <path> <value>` changes a setting.
+- `/stratum save` writes the current settings to all three files.
+- `/stratum reload` reads the three files again and applies them.
 
-Some settings only take effect at startup, so a full restart is the safe choice after larger changes.
+## Changing settings in the files
 
-Or work in-game:
+Edit the file, then run `/stratum reload` in-game. Without the reload, the edit is still only on disk.
 
-- Read a setting with `/stratum get`.
-- Change one with `/stratum set`.
-- Write the current settings to disk with `/stratum save`.
+Stratum keeps the settings in memory. Several actions write all three files from memory, including `/stratum set`, `/stratum save`, and the `/friendlyfire` and `/pvecombat` toggles. An edit that you have not reloaded is overwritten at the next write.
 
-## What lives in the config
+Some settings take effect only at startup, such as the Windows timer resolution. Restart the server after a change to one of them.
 
-The main config is split into sections. The ones you are most likely to touch:
+## Sections
 
-- Chat, Theme, and Nametags for chat formatting, join and leave messages, and role tags
-- PacketLimits, PacketBackPressure, and BlockBreakGuards for server hardening
-- LoginProtection and ClientModPolicy for join-time protection
-- PlayerPrivacy for map and location privacy
-- Performance for chunk, entity, and save behavior
-- Diagnostics for logging and preflight
+The main config is split into sections. These are the ones most servers touch:
 
-See [Server presentation](/docs/configuration/server-presentation) for the chat and message settings most servers set first.
+- `Appearance` and `Chat` for chat formatting, join and leave messages, role tags, and nametags. [Server presentation](/docs/configuration/server-presentation) explains them.
+- `Hardening`, `PacketLimits`, `PacketBackPressure`, and `BlockBreakGuards` for server protection.
+- `LoginProtection` and `ClientModPolicy` for join-time checks.
+- `PlayerPrivacy` for map pins and coordinates.
+- `Performance` for chunk, entity, and save behavior. [Performance tuning](/docs/configuration/performance-tuning) and [Entity tick throttling](/docs/configuration/entity-ticking) cover it.
+- `Diagnostics` for startup logging and preflight checks.
+- `Backup` for scheduled world backups. [Backups and restore](/docs/configuration/backups-and-restore) explains them.
