@@ -46,4 +46,4 @@ The first run prepares the vanilla server build that matches the release, then s
 
 ## Data folder
 
-Pass `--dataPath` to choose where the world and settings are stored. The launcher passes any flag it does not recognize to the server unchanged.
+Without `--dataPath`, the launcher uses a `Data` folder next to `StratumServer` and prints the path at startup. Pass `--dataPath` to choose another location. The launcher passes any flag it does not recognize to the server unchanged.

@@ -19,7 +19,7 @@ Run the release whose `vs-version` matches the Vintage Story version your server
 
 1. Download the zip for the new release.
 2. Stop the server.
-3. Replace the launcher files with the new ones.
+3. Replace the launcher files with the new ones. Leave the data folder alone.
 4. Start the server.
 
 Your world and settings are in the data folder, so they stay. When a release targets a new Vintage Story version, the first start prepares the new vanilla files.
@@ -30,6 +30,6 @@ When you upgrade from a configuration older than version 4, the first start runs
 
 Inventory contents that other players could see before the upgrade may now be hidden from them. To turn the setting off, run:
 
-```bash
+```
 /stratum set Hardening.InventoryGuards false
 ```

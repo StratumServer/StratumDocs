@@ -33,4 +33,8 @@ The launcher reads these flags. Anything else goes to the server, such as `--por
 
 ## Data folder
 
-The world and settings are stored in the data folder. Pass `--dataPath` to choose its location.
+The world and settings are stored in the data folder. Without `--dataPath`, that is a `Data` folder next to `StratumServer`, and the launcher prints the path at startup. Pass `--dataPath` to choose another location.
+
+## Next steps
+
+Read the [configuration overview](/docs/configuration/overview) to change settings, and the [player commands](/docs/commands/player-commands) to see what players can use.
