@@ -1,6 +1,6 @@
 ---
 title: "Player commands"
-description: "Commands every player can use, and the privilege each one needs."
+description: "Commands Stratum adds for players, and the privilege each one needs."
 category: "Commands"
 categoryOrder: 3
 order: 1
@@ -170,7 +170,7 @@ If the server grants self-service changes, the class changes immediately and one
 
 A kit may have a cooldown, a once-per-life limit, or a role requirement. The `/kit` list shows what applies to each kit.
 
-**Note:** The `stratum.kits` privilege is not granted to any role by default. If `/kit` is not available, ask a server admin to grant your role access.
+**Note:** roles with auto-grant (normally `admin`) receive `stratum.kits` automatically. If `/kit` is not available to you, ask a server admin to grant your role access.
 
 ## PvE combat
 

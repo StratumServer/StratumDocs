@@ -57,7 +57,7 @@ On a fresh server, identify your staff role. The built-in moderator roles are `s
 /roles grant <staffrole> stratum.classrequests
 ```
 
-See Moderation Workflows for which privileges match which workflows.
+The privileges above cover the moderation tools in the staff commands page.
 
 ## Player privileges
 

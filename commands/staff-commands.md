@@ -324,7 +324,7 @@ Revives a dead online player in place without sending them to spawn. Useful for 
 /vanish hideothers [on|off|toggle]
 ```
 
-Hides you from other players. Vanished players do not appear in the player list, on the map, or in `/near`. See Vanish for a full description of what is and is not hidden.
+Hides you from other players. Vanished players do not appear in the player list, on the map, or in `/near`.
 
 **Config key:** `Commands.Vanish` | **Default privilege:** `stratum.vanish`
 
@@ -355,7 +355,7 @@ Manages the optional lives system. The `group:<id>` form applies the operation t
 /classrequests deny <id> [reason]
 ```
 
-Manages class change requests submitted by players. See Class Changes.
+Manages class change requests submitted by players.
 
 **Config key:** `Commands.ClassChangeManage` | **Default privilege:** `stratum.classrequests`
 
@@ -379,11 +379,11 @@ Manages class change requests submitted by players. See Class Changes.
 /kitedit give <name> <player>
 ```
 
-Creates and manages kits. See Kits for the full workflow.
+Creates and manages kits.
 
 **Config key:** `Commands.KitEdit` | **Default privilege:** `stratum.kitedit`
 
-**Important:** `stratum.kitedit` is not granted to any role by default, including `admin`. Grant it explicitly.
+**Note:** roles with auto-grant (normally `admin`) receive `stratum.kitedit` automatically. Give it to other roles explicitly.
 
 ## World and server controls
 
@@ -416,7 +416,7 @@ Shows or toggles global PvP.
 /friendlyfire [on|off|toggle|status]
 ```
 
-Toggles whether players in the same group can damage each other. See Moderation Workflows for when to use this.
+Toggles whether players in the same group can damage each other.
 
 **Config key:** `Commands.FriendlyFire` | **Default privilege:** `stratum.friendlyfire`
 
@@ -467,7 +467,7 @@ Edits server roles at runtime. `applyall` shows a preview without `confirm`. Req
 
 ### /group admin
 
-Manages player groups with staff authority. See Groups for the full reference.
+Manages player groups with staff authority.
 
 **Config key:** `Commands.GroupAdmin` | **Default privilege:** `manageotherplayergroups`
 
