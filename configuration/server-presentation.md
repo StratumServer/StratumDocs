@@ -6,27 +6,51 @@ categoryOrder: 2
 order: 2
 ---
 
-Stratum can handle the small presentation pieces most servers end up wanting. These live in the `Chat`, `Theme`, and `Nametags` sections of the config.
+Stratum can handle the presentation pieces most servers want. Chat, join and leave messages, and role tags live in the `Chat` and `Appearance` sections of `stratum.json`. The info command text lives in `ServerInfo`.
 
 ## Chat
 
-The chat formatter can add role prefixes to messages and turn URLs into links. It also has rate controls to cut down on spam, including a minimum time between messages and duplicate message dropping.
+Chat is on by default. Global and group chat each have their own switch, and join and leave messages can be shown or hidden.
+
+Chat rate limiting is also on by default. A player can send one message every 750 milliseconds (`Chat.RateLimit.MinimumIntervalMs`). Identical messages from the same player inside a 3 second window are dropped (`Chat.RateLimit.DropDuplicates` and `DuplicateWindowMs`). Commands are exempt from the limit.
+
+| Key | Default | Effect |
+| --- | --- | --- |
+| `Chat.Enabled` | `true` | Turns Stratum chat on |
+| `Chat.LinkifyUrls` | `true` | Makes URLs in chat clickable |
+| `Chat.Global.Enabled` | `true` | Turns global chat on |
+| `Chat.Groups.Enabled` | `true` | Turns group chat on |
+| `Chat.ConnectionMessages.ShowJoins` | `true` | Shows join messages in chat |
+| `Chat.ConnectionMessages.ShowLeaves` | `true` | Shows leave messages in chat |
+| `Chat.RateLimit.MinimumIntervalMs` | `750` | Minimum time between messages from one player |
 
 ## Info commands
 
-Stratum reads a few pieces of server info text from the config and shows them through commands:
+Four commands show text from the `ServerInfo` section:
 
-- `/rules`
-- `/discord`
-- `/website`
-- `/motd`
+- `/rules` shows `ServerInfo.Rules`.
+- `/discord` shows `ServerInfo.DiscordUrl`.
+- `/website` shows `ServerInfo.WebsiteUrl`.
+- `/motd` shows `ServerInfo.Motd`.
 
-Set the text and links in the config and players can pull them up whenever they need.
+Set the text and links in `stratum.json`, or with `/stratum set`.
 
-## Join and leave messages
+## Role prefixes
 
-The theme can style join, leave, welcome, and disconnect messages. Each of those is a separate toggle, so you can style only the parts you want.
+Role prefixes add a colored tag before a player's name in chat. They are on by default (`Appearance.RolePrefixes.Enabled`). The tag text and color come from the role entries under `Appearance.RolePrefixes.Roles`.
+
+## Join, leave, and welcome messages
+
+The theme styles these messages. Each part is a separate switch under `Appearance.Theme`:
+
+- `StyleJoinLeaveMessages` styles join and leave messages.
+- `StyleWelcomeMessages` styles the welcome message for a joining player.
+- `StyleDisconnectScreens` styles the disconnect screen.
+
+Set a switch to `false` to use the vanilla message for that part.
 
 ## Nametags
 
-Stratum can add a role tag in front of a player's name and apply role based coloring. It applies on join and can refresh when a player's role changes, without a reconnect.
+Nametags add role text above a player's head. They are off by default. To turn them on, set `Appearance.Nametags.Enabled` to `true`.
+
+When nametags are on, `Appearance.Nametags.ApplyRolePrefix` adds the role tag to the name, and `PrefixFormat` sets how the tag looks. The default format is `[{tag}] `, with a trailing space.
