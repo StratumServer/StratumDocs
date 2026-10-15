@@ -34,7 +34,7 @@ Tell a staff member and give the time and place. Staff can check the player's hi
 
 ## Rules text to copy
 
-Set this in `stratum.json` under `ServerInfo`, as the `Rules` value, or with `/stratum set ServerInfo.Rules`. Change the bracketed parts to match your server:
+Set this in `stratum.json` under `ServerInfo`, as the `Rules` value. It is a JSON string, so write each line break as `\n`. A raw line break makes the file invalid. Change the bracketed parts to match your server:
 
 ```
 Rules for <server name>:

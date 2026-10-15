@@ -8,6 +8,8 @@ order: 2
 
 This page lists the main staff and admin commands Stratum adds. Most require a specific privilege set in `stratum-commands.json`. Run `/stratum access` to see which commands are enabled and what privilege each requires on your server.
 
+`/revive`, `/restart`, and `/clearitems` are not registered as privileges on the current release. `/stratum access` does not list them, and roles with auto-grant do not receive them. Grant them to your staff roles explicitly, then check the result with `/roles info <role>`.
+
 Do not type the `[` and `]` in syntax examples. They mark optional arguments.
 
 ## Investigation

@@ -12,7 +12,7 @@ When it is on, it records each violation. Staff see an alert when a player reach
 
 ## Turn it on
 
-Turn the anticheat on with `Anticheat.Enabled` in `stratum.json`. Each check has its own switch and its own threshold under `Anticheat`. Start with the checks you need, and watch the staff alerts for a few days before you turn on punishments.
+Turn the anticheat on with `Anticheat.Enabled` in `stratum.json`. Each check has its own switch and its own threshold under `Anticheat`. All checks start enabled when `Anticheat.Enabled` is `true`. To turn one off, set its own `Enabled` key under `Anticheat` to `false`. Watch the staff alerts for a few days before you turn on punishments.
 
 ```
 /stratum set Anticheat.Enabled true
@@ -56,3 +56,5 @@ The thresholds must rise in order: freeze is never lower than the drop threshold
 ## False positives
 
 A check can flag normal play, especially after lag, teleports, or fast mounts. Staff should look at the alerts before taking action. The `/whois` and `/seen` commands help with that. If a player is punished by mistake, undo it with the usual moderation tools, and send the report to the Stratum team so the check can be fixed.
+
+For the rules text players read with `/rules`, see [Fair play](/docs/moderation/fair-play).

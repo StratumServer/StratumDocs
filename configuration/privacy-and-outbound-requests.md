@@ -74,7 +74,7 @@ Off by default. These controls hide map pins and round the coordinates other pla
 | `PlayerPrivacy.AllowGroupMapVisibility` | `true` | Members of the same group still see each other's pins |
 | `PlayerPrivacy.CoordinateSnapBlocks` | `0` | Rounds the coordinates other players see to a grid of this many blocks. `0` means no rounding. It has no effect while `HideMapPins` is `true`, because the pins are hidden |
 
-Staff can bypass these controls. The privilege is `stratum.privacy.bypass`, and it is set under `PlayerPrivacy.StaffOverride`.
+Staff can bypass these controls. The privilege is `stratum.privacy.bypass`, and it is set under `PlayerPrivacy.StaffOverride`. On the current release this privilege is not registered, so roles with auto-grant do not receive it. Grant it to your staff roles with `/roles grant <role> stratum.privacy.bypass`, and check it with `/roles info <role>`.
 
 ## Load testing
 

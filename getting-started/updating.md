@@ -19,7 +19,7 @@ Run the release whose `vs-version` matches the Vintage Story version your server
 
 1. Download the zip for the new release.
 2. Stop the server.
-3. Replace the launcher files with the new ones. Leave the data folder alone.
+3. Replace the launcher files with the new ones. By default the data folder sits inside the install folder, so do not delete the whole folder. Replace only the launcher files, or keep your data folder outside the install folder with `--dataPath`.
 4. Start the server.
 
 Your world and settings are in the data folder, so they stay. When a release targets a new Vintage Story version, the first start prepares the new vanilla files.

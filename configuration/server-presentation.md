@@ -33,7 +33,7 @@ Four commands show text from the `ServerInfo` section:
 - `/website` shows `ServerInfo.WebsiteUrl`.
 - `/motd` shows `ServerInfo.Motd`.
 
-Set the text and links in `stratum.json`, or with `/stratum set`.
+Set the text and links in `stratum.json`. Write line breaks in a rules text as `\n` inside the JSON string. A raw line break makes the file invalid.
 
 ## Role prefixes
 

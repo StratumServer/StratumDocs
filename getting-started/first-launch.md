@@ -31,6 +31,12 @@ The launcher reads these flags. Anything else goes to the server, such as `--por
 | `--stratum-prepare-only` | Prepare the install, then exit. Exits with an error if the build contains no patched files. Cannot be combined with `--stratum-skip-bootstrap` |
 | `--stratum-no-banner` | Start without the startup banner |
 
+## Set up access
+
+A new dedicated server is invite-only, so add each player who should join with `/whitelist add <player>`.
+
+To make yourself admin, run `/op <your player name>`. Run these from the server console before you start the service, because a service run under systemd has no console. You can also run them in game if your account already has the `grantrevoke` privilege.
+
 ## Data folder
 
 The world and settings are stored in the data folder. Without `--dataPath`, that is a `Data` folder next to `StratumServer`, and the launcher prints the path at startup. Pass `--dataPath` to choose another location.

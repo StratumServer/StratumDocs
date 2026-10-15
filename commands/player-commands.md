@@ -180,7 +180,7 @@ A kit may have a cooldown, a once-per-life limit, or a role requirement. The `/k
 /pvecombat [on|off|toggle|status]
 ```
 
-Shows or toggles cooperative PvE mode. When on, creature hit invulnerability is reduced so multiple players can hit the same target at once. This is a server-wide setting, not per-player. Requires the `stratum.coopcombat` privilege.
+Shows or toggles cooperative PvE mode. The setting applies to the whole server, so give `stratum.coopcombat` to staff roles only. When on, creature hit invulnerability is reduced so multiple players can hit the same target at once. This is a server-wide setting, not per-player. Requires the `stratum.coopcombat` privilege.
 
 ## Quick reference
 
