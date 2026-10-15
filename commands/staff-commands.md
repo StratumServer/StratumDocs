@@ -12,6 +12,22 @@ This page lists the main staff and admin commands Stratum adds. Most require a s
 
 Do not type the `[` and `]` in syntax examples. They mark optional arguments.
 
+## Quick links
+
+- [Investigation](#investigation)
+- [Location](#location)
+- [Chat and messaging](#chat-and-messaging)
+- [Moderation](#moderation)
+- [Player state](#player-state)
+- [Lives system](#lives-system)
+- [Class management](#class-management)
+- [Kit management](#kit-management)
+- [World and server controls](#world-and-server-controls)
+- [Group administration](#group-administration)
+- [Teleport and items](#teleport-and-items)
+- [Stratum command](#stratum-command)
+- [Quick reference](#quick-reference)
+
 ## Investigation
 
 ### /seen

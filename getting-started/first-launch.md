@@ -33,9 +33,14 @@ The launcher reads these flags. Anything else goes to the server, such as `--por
 
 ## Set up access
 
-A new dedicated server is invite-only, so add each player who should join with `/whitelist add <player>`.
+A new dedicated server is invite-only. Before you configure it to run as a service, start it once in a terminal and wait for startup to finish. At the server console, run these commands, replacing the names with your own:
 
-To make yourself admin, run `/op <your player name>`. Run these from the server console before you start the service, because a service run under systemd has no console. You can also run them in game if your account already has the `grantrevoke` privilege.
+```
+/op <your player name>
+/whitelist add <player name>
+```
+
+Run `/whitelist add` for each player who should be able to join. Then type `stop` in the console. You can now set up the [systemd service](/docs/getting-started/running-as-a-service). A systemd service has no interactive console. You can also run these commands in game if your account already has the `grantrevoke` privilege.
 
 ## Data folder
 
