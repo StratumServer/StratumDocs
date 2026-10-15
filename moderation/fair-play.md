@@ -14,15 +14,17 @@ The anticheat is off by default. Turn it on with `Anticheat.Enabled`. When it is
 
 - **Reach:** whether a player breaks, places, or attacks from further away than the game allows.
 - **Block breaking speed:** whether blocks break faster than the tools allow.
-- **Movement:** whether a player moves too far, too fast, or climbs too high in one step.
-- **Positions and combat:** reported positions and block actions that do not fit what the server expects, and attacks that do not fit normal play. The combat check starts in monitor mode, so staff review its data before stricter action is turned on.
+- **Movement:** whether a player moves too fast, flies, walks on water, or moves through blocks.
+- **Positions:** stepping up a block without jumping, or a sudden jump in horizontal speed between two position updates.
+- **Fall damage:** taking no damage after a long fall.
+- **Combat:** attacks that do not fit normal play. The combat check starts in monitor mode, so staff review its data before stricter action is turned on.
 - **Several blocks at once:** breaking many blocks in one action, such as a nuker or veinmine.
 
 Each check allows some margin for lag and normal play. Staff alerts start only after repeated violations inside a short time window, so one odd event does not raise an alert.
 
 ## What happens after a violation
 
-Staff alerts are on by default, so online staff can look at a player who keeps triggering checks. Punishments are a separate setting, and they are off by default. A server that turns them on can drop a player's inventory, freeze, jail, or ban the player after a set number of violations. Kicks are off by default too.
+Staff alerts are on by default, so online staff can look at a player who keeps triggering checks. Punishments are a separate setting, and they are off by default. A server that turns them on can drop a player's inventory, freeze, jail, or ban the player after a set number of violations. Kicks are off by default too, with one exception: a nuker caught by the multi-break check can be removed at once, with no warning, through `MultiBreak.KickOnFingerprint`, which is on by default.
 
 A violation count does not expire, so a player who is punished by mistake can still reach the next step later. Staff can review the alerts and undo a punishment, but the count stays.
 
