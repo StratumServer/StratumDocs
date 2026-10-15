@@ -37,6 +37,8 @@ Nothing changes until someone uses these commands. A server that never runs `/gr
 
 Every change is written to the audit log with the name of the staff member who made it.
 
+For example, `/group admin add Vikings Alice 2` adds Alice as an operator, `/group admin lock Vikings Alice 1d` keeps her in the group for a day, and `/group admin tag Vikings RED` labels the group. These commands require both `manageotherplayergroups` and the vanilla `controlplayergroups` privilege. They also require `Groups.Enabled` to be `true`.
+
 ## Locks
 
 `/group admin lock` pins a player into a group. A locked player cannot leave the group, and a group operator cannot kick them out. The owner cannot disband a group that has a locked member. Staff can still remove the player, and removing someone clears their lock.
@@ -56,7 +58,7 @@ A kind is a label on a group that controls how it behaves in combat. Kinds are d
 | `Code` | The name you use with `/group admin kind`. |
 | `Exclusive` | A player can hold at most one group of this kind. Two different exclusive kinds do not conflict. |
 | `MaxMembers` | The member limit. `0` means no limit. Players are refused at the limit. Staff adds go past it, and the audit log records that. |
-| `Lockable` | Whether locks work on groups of this kind. |
+| `Lockable` | Whether locks work on groups of this kind. If it is `false`, `/group admin lock` cannot lock a member of that group. |
 | `CountsAsSameSide` | Whether sharing a group of this kind makes two players allies for friendly fire. |
 | `PlayerCreatable` | Whether `/group create` can produce this kind. |
 | `Tag` | The tag for groups of this kind that have no tag of their own. |
@@ -66,11 +68,15 @@ A kind is a label on a group that controls how it behaves in combat. Kinds are d
 
 Kinds and relations affect combat only. Map privacy still treats two players in the same group as able to see each other.
 
+The shipped config includes an example `faction` kind, but it is not assigned to new groups by default. To use it, assign it with `/group admin kind <group> faction`. To make new player-created groups use a kind automatically, set `Groups.DefaultKind` to a kind whose `PlayerCreatable` value is `true`.
+
 ## Relations
 
 `/group admin relation <group> <other> ally|enemy|neutral` records how two groups stand toward each other. The relation is stored on both groups, so it reads the same from either side.
 
 When `Groups.AlliesCountAsSameSide` is `true`, an ally relation turns friendly fire off between the two groups, as long as their kinds count as the same side. When a player holds several groups, an enemy relation between any two of them overrides an ally relation. That lets you carve one pairing out of a wider alliance.
+
+Relations can be disabled with `Groups.RelationsEnabled`. For example, `/group admin relation Vikings Builders ally` records an alliance between two groups.
 
 ## Tags
 

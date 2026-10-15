@@ -6,7 +6,9 @@ categoryOrder: 2
 order: 7
 ---
 
-Read this page before you expose your server to the internet. It covers two things. The first is the outbound requests Stratum makes on its own: the statistics report and the update check. The second is the player privacy controls, which are off by default.
+Read this page before you expose your server to the internet. It covers outbound requests made by the launcher and Stratum, plus player privacy controls, which are off by default.
+
+Before the server can prepare its first install, the launcher makes HTTPS requests to `https://api.vintagestory.at/stable-unstable.json` and the Vintage Story download URL listed in that manifest. Linux ARM64 also downloads a native overlay from `github.com/anegostudios/VintagestoryServerArm64`. The launcher needs these requests when preparing the base game, not on every normal server start.
 
 ## Server statistics
 

@@ -22,4 +22,6 @@ If this is your first time, read [Installation](/docs/getting-started/installati
 
 ## Getting help
 
-The Discord is the fastest way to reach the team. Bug reports go on GitHub.
+The Discord is the fastest way to reach the team. Bug reports go on [GitHub](https://github.com/StratumServer/Stratum/issues). Join the [Stratum Discord](https://discord.gg/pd24fawhsD).
+
+Stratum releases are available for Windows x64, Linux x64, and Linux ARM64. The launcher does not support macOS.

@@ -10,13 +10,13 @@ The first start prepares the vanilla server files that Stratum needs. You do not
 
 ## What happens
 
-1. The launcher reads the release manifest for the vanilla build that the release targets.
+1. The launcher reads the Vintage Story stable and unstable version manifest and selects the vanilla build that the Stratum release targets.
 2. It downloads the official Vintage Story server archive and verifies it.
 3. It unpacks the archive.
 4. It writes Stratum's patched files on top.
 5. It starts the server.
 
-Later starts use the prepared install. Stratum prepares again only when the Stratum version or the base Vintage Story version changes, or when you pass `--stratum-refresh`.
+Later starts use the prepared install. Stratum prepares again only when the Stratum version or the base Vintage Story version changes, or when you pass `--stratum-refresh`. Refresh reuses a cached archive when its checksum is valid. To force a new download, remove the cached archive from `.vanilla-cache` first.
 
 ## Launcher flags
 
@@ -26,8 +26,8 @@ The launcher reads these flags. Anything else goes to the server, such as `--por
 | --- | --- |
 | `--stratum-version` | Print version information and exit |
 | `--stratum-help` | Print the launcher options and exit |
-| `--stratum-refresh` | Download and prepare the base server again |
-| `--stratum-skip-bootstrap` | Skip the first-run preparation |
+| `--stratum-refresh` | Re-extract and rewrite the base server files and patched files. It downloads the archive only when the cached copy is missing or fails checksum verification. |
+| `--stratum-skip-bootstrap` | Skip vanilla preparation and the patched-file overlay on every run. Use this only when both are already prepared. |
 | `--stratum-prepare-only` | Prepare the install, then exit. Exits with an error if the build contains no patched files. Cannot be combined with `--stratum-skip-bootstrap` |
 | `--stratum-no-banner` | Start without the startup banner |
 
@@ -40,11 +40,15 @@ A new dedicated server is invite-only. Before you configure it to run as a servi
 /whitelist add <player name>
 ```
 
-Run `/whitelist add` for each player who should be able to join. Then type `stop` in the console. You can now set up the [systemd service](/docs/getting-started/running-as-a-service). A systemd service has no interactive console. You can also run these commands in game if your account already has the `grantrevoke` privilege.
+Run `/whitelist add` for each player who should be able to join. Stop the server with `/stop` in the console, then set up the [systemd service](/docs/getting-started/running-as-a-service). A systemd service has no interactive console. In game, `/op` requires the `grantrevoke` privilege and `/whitelist` requires the separate `whitelist` privilege.
 
 ## Data folder
 
-The world and settings are stored in the data folder. Without `--dataPath`, that is a `Data` folder next to `StratumServer`, and the launcher prints the path at startup. Pass `--dataPath` to choose another location.
+The world and settings are stored in the data folder. Without `--dataPath`, that is a `Data` folder next to `StratumServer`. The launcher prints the path in its startup banner unless you pass `--stratum-no-banner`. Pass `--dataPath <path>` or `--dataPath=<path>` to choose another location.
+
+The first start creates `serverconfig.json`, `serverroles.json`, `stratum.json`, `stratum-commands.json`, and `stratum-performance.json` in the data folder. If preparation fails, the launcher prints the failure and exits. Fix the reported cause and run it again; the vanilla base marker is written only after preparation succeeds. The `Mods` folder in the install directory also receives Stratum's patched `VSEssentials.dll` and `VSSurvivalMod.dll` assemblies.
+
+For a headless install, run `./StratumServer --stratum-prepare-only --stratum-no-banner`. A successful preparation prints `Stratum: prepare complete` and exits. A failure prints `Stratum: vanilla asset bootstrap failed: <message>` and exits with an error. The launcher suggests `--stratum-skip-bootstrap` as a recovery option only when the needed vanilla assets are already present.
 
 ## Next steps
 

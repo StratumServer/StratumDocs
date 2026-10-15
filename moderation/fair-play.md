@@ -51,4 +51,4 @@ Rules for <server name>:
 5. Staff decisions can be appealed by contacting <contact>.
 ```
 
-If your server uses the anticheat, say so in the rules, so players know that movement and reach are checked.
+If your server uses the anticheat, say so in the rules, so players know that movement and reach are checked. The [Anticheat guide](/docs/moderation/anticheat) explains what staff can see and how the checks escalate.

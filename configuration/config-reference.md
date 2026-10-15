@@ -95,9 +95,10 @@ Off by default. Controls which client mods a player may join with.
 | Key | Default | Effect |
 | --- | --- | --- |
 | `ClientModPolicy.Enabled` | `false` | Turns the policy on |
-| `ClientModPolicy.StrictWhitelist` | `true` | Disconnects players whose mods are not on the whitelist |
+| `ClientModPolicy.StrictWhitelist` | `true` | Sends Stratum's allow list to the client, which disables unlisted client mods for that session. It does not disconnect the player. |
 | `ClientModPolicy.IncludeServerUniversalMods` | `true` | Adds the mods the server marks as universal to the whitelist |
 | `ClientModPolicy.AllowModIds` | `[]` | Extra mod IDs to allow |
+| `ClientModPolicy.LogPolicyOnStartup` | `true` | Logs the policy state at startup |
 
 ## LoginProtection
 
@@ -129,7 +130,10 @@ Spreads new players away from a crowd at spawn.
 | --- | --- | --- |
 | `CrowdSpawn.Enabled` | `true` | Turns the spread on |
 | `CrowdSpawn.MinimumNearbyPlayers` | `24` | Players near spawn before the spread starts |
+| `CrowdSpawn.DetectionRadiusBlocks` | `48` | Radius used to count nearby players |
 | `CrowdSpawn.SpreadRadiusBlocks` | `64` | How far from spawn new players can be placed |
+| `CrowdSpawn.SafePositionTries` | `15` | Safe-position attempts before placement |
+| `CrowdSpawn.IncludeReturningPlayers` | `false` | Applies the spread to returning players too |
 
 ## MobSpawning
 
@@ -138,7 +142,7 @@ Spreads new players away from a crowd at spawn.
 | `MobSpawning.HostileEnabled` | `true` | Natural spawning of hostile mobs |
 | `MobSpawning.NeutralEnabled` | `true` | Natural spawning of neutral mobs |
 | `MobSpawning.PassiveEnabled` | `true` | Natural spawning of passive mobs |
-| `MobSpawning.NaturalSpawnMultiplier` | `1` | Multiplier on natural spawn rates |
+| `MobSpawning.NaturalSpawnMultiplier` | `1` | Multiplier on natural spawn rates, clamped from `0` to `1` |
 
 `/mobs` controls natural spawning at runtime.
 
