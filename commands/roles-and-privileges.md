@@ -112,7 +112,7 @@ Grant these to your staff roles.
 
 **Note:** `stratum.kitedit` is registered like every other Stratum privilege, so roles with auto-grant (normally `admin`) receive it. Give it to other roles explicitly.
 
-**Exception:** `stratum.revive`, `stratum.restart`, and `stratum.clearitems` are not in the access list that `/stratum access` shows, and roles with auto-grant do not receive them. Grant them to your admin role with `/roles grant admin <privilege>` if you want admins to use those commands. The server console is not checked against these privileges.
+**Exception:** `stratum.revive`, `stratum.restart`, and `stratum.clearitems` are not in the access list that `/stratum access` shows, and roles with auto-grant do not receive them. Grant them from the server console with `/roles grant admin <privilege>`, because an admin in game cannot grant a privilege the admin does not hold. The server console is not checked against these privileges.
 
 ## Admin privileges
 

@@ -34,7 +34,13 @@ Tell a staff member and give the time and place. Staff can check the player's hi
 
 ## Rules text to copy
 
-Set this in `stratum.json` under `ServerInfo`, as the `Rules` value. It is a JSON string, so write each line break as `\n`. A raw line break makes the file invalid. Change the bracketed parts to match your server:
+Set this in `stratum.json` under `ServerInfo`, as the `Rules` value. It is a JSON string, so write each line break as `\n`. A raw line break makes the file invalid. A single-line example of the JSON value, with the line breaks written as `\n`:
+
+```json
+"Rules": "Rules for <server name>:\n1. Play fair.\n2. Do not grief.\n3. Be respectful in chat."
+```
+
+The full text, with each rule on its own line, is below. Change the bracketed parts to match your server:
 
 ```
 Rules for <server name>:
