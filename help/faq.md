@@ -24,7 +24,7 @@ Yes, by default. Stratum sends anonymous statistics about your server, and it ch
 
 ## Is Stratum compatible with Synergy or Tungsten?
 
-No. Stratum already includes the optimizations those mods provide, so running them together conflicts. See [Compatibility overview](/docs/compatibility/overview).
+Stratum's project policy is that it is incompatible with those mods because their optimizations overlap. Stratum does not detect or block them, so test your server's mod list before deployment. See [Compatibility overview](/docs/compatibility/overview).
 
 ## Do I have to update when Vintage Story updates?
 

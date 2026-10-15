@@ -14,11 +14,17 @@ Create a system user for the server, then give it the install directory and the 
 
 ```bash
 sudo useradd --system --home /opt/stratum --shell /usr/sbin/nologin stratum
-sudo mkdir -p /srv/stratum/data
+sudo mkdir -p /opt/stratum /srv/stratum/data
+sudo unzip "stratum-<version>-linux-x64.zip" -d /opt/stratum
+sudo chmod +x /opt/stratum/StratumServer
 sudo chown -R stratum:stratum /opt/stratum /srv/stratum
 ```
 
+Replace `<version>` with the release tag without its leading `v`. The first start downloads and prepares the matching Vintage Story files, so either prepare the install as the service user first or wait for the network to be online before starting the service. `network-online.target` waits only when the system has an enabled wait-online service.
+
 The first start writes patched files into the install directory, so the service user must be able to write there.
+
+`systemctl stop stratum` sends a graceful stop signal and the server saves before it exits. Set `TimeoutStopSec` high enough for your world to save; if systemd's stop timeout expires, it can terminate the process before the save finishes. The example uses five minutes.
 
 ## Service file
 
@@ -27,7 +33,8 @@ Create `/etc/systemd/system/stratum.service`:
 ```ini
 [Unit]
 Description=Stratum Vintage Story Server
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple
@@ -36,6 +43,7 @@ WorkingDirectory=/opt/stratum
 ExecStart=/opt/stratum/StratumServer --dataPath /srv/stratum/data --stratum-no-banner
 Restart=on-failure
 RestartSec=10
+TimeoutStopSec=300
 StandardOutput=journal
 StandardError=journal
 
@@ -60,6 +68,8 @@ sudo systemctl status stratum
 sudo journalctl -u stratum -f
 ```
 
+Vintage Story also writes files under `Logs` in the data folder, including `stratum-audit.log`. Check those files if you need records beyond the systemd journal.
+
 ## Console access
 
 Stratum does not provide an interactive console under systemd. To run commands on a running server, use the in-game staff commands. For one-off console commands, stop the service and run the server by hand:
@@ -73,11 +83,11 @@ sudo systemctl start stratum
 
 ## Scheduled restarts
 
-Run `/restart 30` in game to restart the server in 30 minutes. Players get countdown messages. The command needs the `stratum.restart` privilege. Roles with auto-grant, normally `admin`, do not receive it, so grant it with `/roles grant admin stratum.restart` if admins should use it.
+Run `/restart 30` in game to stop the server after a 30-minute countdown. The command needs the `stratum.restart` privilege. Roles with auto-grant, normally `admin`, do not receive it, so grant it with `/roles grant admin stratum.restart` if admins should use it. The command exits the server process; configure the service's restart behavior if the process should start again.
 
 Thirty seconds before a scheduled restart, players are warned to pick up their items. The items still on the ground are removed at the moment of the restart. This is on by default, and you can turn it off with `Performance.Restart.ClearGroundItemsBeforeStop`.
 
-By default the server exits with code `0` on restart. systemd treats a clean exit as success, so `Restart=on-failure` does not start the server again after `/restart`. To have `/restart` bring the server back, set `Performance.Restart.ExitCode` in `stratum-performance.json` to a non-zero value, such as `1`, and keep `Restart=on-failure`. `Restart=always` also starts the server after a clean stop, which you may not want.
+By default the server exits with code `0` on restart. systemd treats a clean exit as success, so `Restart=on-failure` does not start the server again after `/restart`. To have `/restart` bring the server back, set `Performance.Restart.ExitCode` in `stratum-performance.json` to a non-zero value, such as `1`, and keep `Restart=on-failure`. `Restart=always` also starts the server after a clean stop, which you may not want. The default countdown warns at 300, 120, 60, 45, 30, 15, and 5 seconds and clears ground items 30 seconds before shutdown.
 
 ## Firewall
 
@@ -88,6 +98,6 @@ sudo ufw allow 42420/tcp
 sudo ufw allow 42420/udp
 ```
 
-The server uses UDP for game traffic. Clients fall back to TCP without it, so open both.
+Vintage Story uses TCP for the connection and can use UDP for game traffic. Open both protocols for the server port.
 
 If you changed the port, open that port instead.

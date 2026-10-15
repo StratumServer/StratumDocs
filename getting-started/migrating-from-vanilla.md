@@ -22,7 +22,7 @@ Run Stratum with `--dataPath` pointing at the folder your stock server used. Str
 ./StratumServer --dataPath /path/to/your/data
 ```
 
-Check the startup log. You should see a line that says the savegame loaded, and a line that says the config was created or loaded. A line that says `Failed to load config` or a fatal error means the start did not finish. Stop the server and check the message before you go on.
+Check the startup log for the savegame-loaded line and the config status. If you see `Failed to load config`, Stratum falls back to default settings in memory and logs the error; the server may still finish starting. Stop it with `/stop`, fix the invalid file, and start it again before relying on the intended settings.
 
 Stop the server with `/stop` in the server console. Stratum saves the world on the way out.
 

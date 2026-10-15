@@ -25,7 +25,7 @@ You can switch either command off with `Commands.Kits.Enabled` or `Commands.KitE
 
 A kit with no role assignment is open to every player with kit access. A kit assigned to roles is open only to players who hold one of those roles.
 
-Each kit can have a cooldown. Cooldowns are tracked per player and kit, and they reset when the server restarts. Staff with the staff chat privilege skip the kit cooldown.
+Each kit can have a cooldown. Cooldowns are tracked per player and kit, and they reset when the server restarts. Staff with the `stratum.staffchat` privilege skip the kit cooldown.
 
 A kit marked once per life can be redeemed once between deaths.
 
@@ -54,6 +54,8 @@ Armor goes straight into a matching empty slot. Anything else goes to the player
 `create` takes a snapshot of your inventory and makes it the kit's item list. If the kit exists, its list is replaced.
 
 `additem` adds the item in your active hotbar slot.
+
+For example, stand with the items you want to include and run `/kitedit create starter`. Use `/kitedit setrole starter suplayer` to toggle the `suplayer` role assignment, `/kitedit setcooldown starter 86400` to set a one-day cooldown, and `/kitedit oneperlife starter on` to limit the kit to once per life.
 
 `preview` shows the kit's assignment, cooldown, flags, and numbered items. Use the numbers with `removeitem`.
 

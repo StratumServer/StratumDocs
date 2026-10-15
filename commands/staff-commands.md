@@ -8,7 +8,7 @@ order: 2
 
 This page lists the main staff and admin commands Stratum adds. Most require a specific privilege set in `stratum-commands.json`. Run `/stratum access` to see which commands are enabled and what privilege each requires on your server.
 
-`/revive`, `/restart`, and `/clearitems` are not registered as privileges on the current release. `/stratum access` does not list them, and roles with auto-grant do not receive them. Grant them from the server console with `/roles grant <role> <privilege>`, then check the result with `/roles info <role>`.
+`/revive`, `/restart`, and `/clearitems` do not appear in `/stratum access`, and roles with auto-grant do not receive them. Grant them explicitly with `/roles grant <role> <privilege>`, then check the result with `/roles info <role>`. A default admin role has `root`, so an in-game admin can grant a privilege they do not hold; the console also bypasses Stratum privilege checks.
 
 Do not type the `[` and `]` in syntax examples. They mark optional arguments.
 
@@ -100,7 +100,7 @@ Sends a private message to an online player.
 /reply <message>
 ```
 
-Replies to the last player who sent you a private message.
+Replies to the last player with whom you exchanged a private message, whether they sent the last message or you did.
 
 **Config key:** `Commands.Message`
 
@@ -127,10 +127,10 @@ Broadcasts a highlighted message to all players across all chat groups.
 ### /slowmode
 
 ```
-/slowmode [seconds|off|status]
+/slowmode [duration|off|disable|status]
 ```
 
-Sets a minimum interval in seconds between chat messages for all players. Use `0` or `off` to disable. A server-configured maximum limits how high it can be set.
+Sets a minimum interval between chat messages for all players. Durations can be given in seconds or with units such as `10s`, `2m`, and `1h`. Use `off`, `disable`, or `0` to turn it off. The maximum defaults to one hour and can be changed with `Commands.SlowmodeMaxSeconds`; `0` removes the cap.
 
 **Config key:** `Commands.ChatControl` | **Default privilege:** `stratum.chatcontrol`
 
@@ -141,6 +141,8 @@ Sets a minimum interval in seconds between chat messages for all players. Use `0
 ```
 
 Locks or unlocks player chat. An optional reason is broadcast with the lock message.
+
+The lock and slowmode state resets when the server restarts. Players with `stratum.chatcontrol` bypass both controls and can bypass disabled chat channels when `AllowStaffBypass` is enabled. `/chattoggle` writes the channel state to config.
 
 **Config key:** `Commands.ChatControl`
 
@@ -160,7 +162,7 @@ Enables or disables global or group chat channels. Use `all` to affect both at o
 /chatclear [lines]
 ```
 
-Clears visible chat history by sending blank lines. Without an argument it uses `Commands.ClearChatLines` (default 80). The argument cannot exceed 200 lines.
+Clears visible chat history by sending blank lines. Without an argument it uses `Commands.ClearChatLines` (default 80). The argument is capped at that setting; the setting itself has a maximum of 200.
 
 **Config key:** `Commands.ChatControl`
 
@@ -202,7 +204,7 @@ Removes a warning by its ID from `/warnings`. The optional reason is logged.
 /mute <player> <duration> <reason>
 ```
 
-Mutes a player. Duration format: `10m`, `2h`, `7d`, or `perm`/`permanent`/`forever`. A reason is required. A muted player cannot use global chat, private messages, or staffchat. The mute persists across reconnects.
+Mutes a player. Duration format accepts `10m`, `2h`, `7d`, `2w`, decimal durations such as `1.5h`, or `perm`/`permanent`/`forever`. A reason is required. A muted player cannot send messages to any chat channel. The mute persists across reconnects.
 
 **Config key:** `Commands.Mute` | **Default privilege:** `stratum.mute`
 
@@ -252,7 +254,7 @@ Teleports a player to the jail location and holds them there. Jailed players are
 /unjail <player> [reason]
 ```
 
-Releases a jailed player and returns them to their pre-jail position.
+Releases a jailed player. If the player is online, was online when jailed, and `JailSettings.ReturnOnUnjail` is enabled, they return to their pre-jail position. An offline player remains at the jail location until they join and are released.
 
 **Config key:** `Commands.Jail`
 
@@ -311,6 +313,8 @@ Manages the report queue.
 - `/reports claim <id>`: mark a report as being handled
 - `/reports close <id> [resolution]`: close a report
 
+The list shows at most 20 reports. Use `/reports list all` to include closed reports.
+
 **Config key:** `Commands.ReportManage` | **Default privilege:** `stratum.reports`
 
 ## Player state
@@ -321,7 +325,7 @@ Manages the report queue.
 /freeze <player> [on|off|toggle]
 ```
 
-Freezes or unfreezes an online player. Without an argument, toggles. Accepts target selectors like `@staff`.
+Freezes or unfreezes an online player. Without an argument, toggles. Accepts target selectors like `@staff`, which selects players with the built-in `sumod`, `crmod`, or `admin` roles. Freeze state is kept in memory and ends when the player disconnects.
 
 **Config key:** `Commands.Freeze` | **Default privilege:** `stratum.freeze`
 
@@ -344,6 +348,8 @@ Revives a dead online player in place without sending them to spawn. Useful for 
 
 Hides you from other players. Vanished players do not appear in the player list, on the map, or in `/near`.
 
+Vanish persists across reconnects and server restarts, but Stratum removes it if the player loses `stratum.vanish`. Other vanish holders can still see you unless they enable `hideothers`; that setting resets when they reconnect. The active-vanish reminder repeats every four seconds by default.
+
 **Config key:** `Commands.Vanish` | **Default privilege:** `stratum.vanish`
 
 ## Lives system
@@ -358,7 +364,7 @@ Hides you from other players. Vanished players do not appear in the player list,
 /lives set <player|group:<id>> <amount>
 ```
 
-Manages the optional lives system. The `group:<id>` form applies the operation to all members of a player group.
+Manages bonus lives on top of the world's `playerlives` setting. The `group:<id>` or `group:<name>` form applies the operation to all members of a player group. `/lives give`, `/lives take`, and `/lives set` change the bonus, not the remaining lives; `playerlives = -1` means unlimited lives. Giving or setting a positive total can revive a dead online player. For example, `/lives give group:Vikings 2` gives two bonus lives to the group.
 
 **Config key:** `Commands.Lives` | **Default privilege:** `stratum.lives`
 
@@ -374,6 +380,8 @@ Manages the optional lives system. The `group:<id>` form applies the operation t
 ```
 
 Manages class change requests submitted by players.
+
+`/classrequests list` accepts `pending`, `approved`, `denied`, `cancelled`, or `all`. Lists show at most 20 entries. Online holders of `stratum.classrequests` receive a notice when pending requests are waiting.
 
 **Config key:** `Commands.ClassChangeManage` | **Default privilege:** `stratum.classrequests`
 
@@ -403,6 +411,8 @@ Creates and manages kits.
 
 **Note:** roles with auto-grant (normally `admin`) receive `stratum.kitedit` automatically. Give it to other roles explicitly.
 
+`create` snapshots your inventory, or only the hotbar when the kit scope is `hotbar`. `additem` takes the active hotbar slot. `setrole` toggles a role assignment on or off; a kit with no assigned role is available to everyone with `stratum.kits`. `setscope` changes what the next `create` captures, not the existing kit. See [Kits](/docs/moderation/kits) for the player behavior and scope details.
+
 ## World and server controls
 
 ### /mobs
@@ -414,7 +424,7 @@ Creates and manages kits.
 /mobs wipe <hostile|neutral|passive|all> confirm
 ```
 
-Controls natural mob spawning. `wipe confirm` removes all currently loaded creatures of the given category.
+Controls natural mob spawning. `/mobs set <category> on` also turns the master switch back on. `wipe confirm` removes all currently loaded creatures of the given category. Changes are saved to config.
 
 **Config key:** `Commands.MobSpawning` | **Default privilege:** `controlserver`
 
@@ -424,7 +434,7 @@ Controls natural mob spawning. `wipe confirm` removes all currently loaded creat
 /pvp [on|off|status]
 ```
 
-Shows or toggles global PvP.
+Shows or toggles global PvP. A change updates `AllowPvP` in `serverconfig.json` and announces it to everyone.
 
 **Config key:** `Commands.Pvp` | **Default privilege:** `stratum.pvp`
 
@@ -444,7 +454,7 @@ Toggles whether players in the same group can damage each other.
 /clearitems [now|cancel]
 ```
 
-Clears all dropped items on the ground. Without an argument, starts a countdown broadcast. `now` clears immediately. `cancel` stops a pending countdown.
+Clears dropped items from loaded chunks. Without an argument, warns players and starts a countdown; the default warning is 30 seconds. `now` clears immediately. `cancel` stops a pending countdown.
 
 **Config key:** `Commands.ClearItems` | **Default privilege:** `stratum.clearitems`
 
@@ -455,7 +465,7 @@ Clears all dropped items on the ground. Without an argument, starts a countdown 
 /restart cancel
 ```
 
-Schedules a server restart with countdown announcements. The delay is in minutes from 1 to 60.
+Schedules a server shutdown with countdown announcements. The delay is in minutes from 1 to 60, and `/restart cancel` cancels it. A new `/restart <minutes>` replaces the pending countdown. The server exits when the countdown ends, so a service manager must start it again. By default, Stratum clears ground items before the shutdown.
 
 **Config key:** `Commands.Restart` | **Default privilege:** `stratum.restart`
 
@@ -485,7 +495,7 @@ Edits server roles at runtime. `applyall` shows a preview without `confirm`. Req
 
 ### /group admin
 
-Manages player groups with staff authority.
+Manages player groups with staff authority. Subcommands are `add`, `remove`, `lock`, `unlock`, `freeze`, `kind`, `tag`, `relation`, `info`, and `kinds`. The command requires `Groups.Enabled`; see [Groups](/docs/moderation/groups) for the syntax.
 
 **Config key:** `Commands.GroupAdmin` | **Default privilege:** `manageotherplayergroups`
 

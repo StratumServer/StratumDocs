@@ -6,7 +6,7 @@ categoryOrder: 3
 order: 1
 ---
 
-This page lists the commands Stratum adds for regular players. Your server may have some of these disabled or may require a specific role to use them. Run `/stratum access` (if you have access to it) or ask a staff member to see what is available on your server.
+This page lists the commands Stratum adds for regular players. Your server may have some of these disabled or may require a specific role to use them. Ask a staff member which commands are available on your server. `/stratum access` requires the server's `controlserver` privilege.
 
 Do not type the `[` and `]` in syntax examples. They mark optional arguments.
 
@@ -39,6 +39,8 @@ Teleports you to a random unclaimed location. The radius is set by the server.
 
 Sends a teleport request to another player asking to teleport to them. The target gets a prompt and a configurable number of seconds to respond.
 
+The default request expires after 60 seconds. A player can send another request every 15 seconds by default, and a new request to the same player replaces the previous one. Accepting a request starts the normal teleport warmup and cooldown. A player can cancel a pending outgoing request with `/tpa cancel`.
+
 - `/tpa accept` or `/tpaccept`: accept a request sent to you
 - `/tpa decline`, `/tpa deny`, `/tpdeny`, or `/tpdecline`: decline a request
 - `/tpa cancel` or `/tpacancel`: cancel your own outgoing request
@@ -62,12 +64,14 @@ Asks another player to teleport to you. They accept or decline the same way as a
 
 Save and use personal home locations.
 
-- `/home` or `/home <name>`: teleport to a saved home. Without a name, uses the home named `home` or shows your list if you have multiple.
+- `/home` or `/home <name>`: teleport to a saved home. Without a name, it uses the home named `home` if one exists, otherwise it uses your only home or asks you to choose one.
 - `/homes`: list all your saved homes with coordinates.
 - `/sethome [name]`: save your current position. Without a name, saves as `home`.
 - `/delhome [name]`: delete a home.
 
-Home names may only contain letters, numbers, hyphens, and underscores (maximum 32 characters). The server sets a limit on how many homes you can save.
+Home names may only contain letters, numbers, hyphens, and underscores (maximum 32 characters). The defaults are no homes for visitor roles, one for limited player roles, three for regular player roles, ten for moderators, and fifty for admins. The server can change these limits. For example, `/sethome mine_entrance` saves a home and `/home mine_entrance` returns to it. Without a name, `/delhome` also uses the home named `home` or your only home.
+
+Teleports have a five-second warmup and a 30-second cooldown by default. Moving more than 0.35 blocks or taking damage cancels a pending warmup. The server can change these settings. Creative and spectator players, plus staff with the configured bypass, skip the warmup and its cooldown.
 
 ### /back
 
@@ -133,7 +137,15 @@ Shows how long the server has been running since the last restart.
 /motd
 ```
 
-Shows the server's configured rules, Discord link, website URL, or message of the day. Returns an error if the server has not configured that text.
+Shows the server's configured rules, Discord link, website URL, or message of the day. If an optional text or URL is unset, the command returns a normal message such as `No rules have been configured.`
+
+### /report
+
+```
+/report <player> <reason>
+```
+
+Files a report about a player for staff to review. Players need the `stratum.report` privilege. Staff manage the queue with `/reports`; see [Moderation workflows](/docs/moderation/workflows).
 
 ## Character
 
@@ -204,6 +216,7 @@ Shows or toggles cooperative PvE mode. The setting applies to the whole server, 
 | `/discord` | Show Discord link | `stratum.info` |
 | `/website` | Show website | `stratum.info` |
 | `/motd` | Show message of the day | `stratum.info` |
+| `/report <player> <reason>` | Report a player to staff | `stratum.report` |
 | `/class` | View your class info | `stratum.classchange` |
 | `/class change <class>` | Change or request a class change | `stratum.classchange` |
 | `/kit [name]` | List or redeem kits | `stratum.kits` |

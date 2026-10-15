@@ -12,7 +12,7 @@ Stratum can handle the presentation pieces most servers want. Chat, join and lea
 
 Chat is on by default. Global and group chat each have their own switch, and join and leave messages can be shown or hidden.
 
-Chat rate limiting is also on by default. A player can send one message every 750 milliseconds (`Chat.RateLimit.MinimumIntervalMs`). Identical messages from the same player inside a 3 second window are dropped (`Chat.RateLimit.DropDuplicates` and `DuplicateWindowMs`). Commands are exempt from the limit.
+Chat rate limiting is also on by default. A player can send one message every 750 milliseconds (`Chat.RateLimit.MinimumIntervalMs`). Identical messages from the same player inside a 3 second window are dropped (`Chat.RateLimit.DropDuplicates` and `Chat.RateLimit.DuplicateWindowMs`). Commands are exempt by default.
 
 | Key | Default | Effect |
 | --- | --- | --- |
@@ -22,7 +22,12 @@ Chat rate limiting is also on by default. A player can send one message every 75
 | `Chat.Groups.Enabled` | `true` | Turns group chat on |
 | `Chat.ConnectionMessages.ShowJoins` | `true` | Shows join messages in chat |
 | `Chat.ConnectionMessages.ShowLeaves` | `true` | Shows leave messages in chat |
+| `Chat.ConnectionMessages.ShowDisconnects` | `true` | Shows disconnect messages in chat |
+| `Chat.RateLimit.Enabled` | `true` | Turns chat rate limiting on or off |
 | `Chat.RateLimit.MinimumIntervalMs` | `750` | Minimum time between messages from one player |
+| `Chat.RateLimit.DropDuplicates` | `true` | Drops identical messages inside the duplicate window |
+| `Chat.RateLimit.DuplicateWindowMs` | `3000` | Duplicate-message window in milliseconds |
+| `Chat.RateLimit.ExemptCommands` | `true` | Exempts commands from chat rate limiting |
 
 ## Info commands
 
@@ -37,7 +42,7 @@ Set the text and links in `stratum.json`. Write line breaks in a rules text as `
 
 ## Role prefixes
 
-Role prefixes add a colored tag before a player's name in chat. They are on by default (`Appearance.RolePrefixes.Enabled`). The tag text and color come from the role entries under `Appearance.RolePrefixes.Roles`.
+Role prefixes add one or more colored tags before a player's name in chat. They are on by default (`Appearance.RolePrefixes.Enabled`). The tag text, color, bold style, and priority come from the role entries under `Appearance.RolePrefixes.Roles`. Higher priority prefixes appear first. A role can have multiple prefixes by using an array of entries.
 
 ## Join, leave, and welcome messages
 
