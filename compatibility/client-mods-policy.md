@@ -18,7 +18,7 @@ Set `ClientModPolicy.Enabled` to `true` in `stratum.json`, or use:
 /stratum set ClientModPolicy.Enabled true
 ```
 
-Before you enable it, list the mods your players already use. Otherwise players with those mods are turned away the first time the policy runs.
+Before you enable it, collect the mod IDs your players already use. Ask each player to copy the `modid` value from each mod's `modinfo.json`. Use the ID, not the mod's display name. Otherwise, players with unlisted mods are disconnected when they join.
 
 ## How the whitelist works
 
@@ -29,6 +29,18 @@ The core Vintage Story mods are always allowed.
 `IncludeServerUniversalMods` is `true` by default. It adds the mods the server marks as universal to the whitelist, so you do not need to list them by hand.
 
 `AllowModIds` is a list of extra entries added to the whitelist. Each entry is used as you write it, with spaces at the ends removed. The list is empty by default.
+
+For example, if the mod's `modid` is `examplemod`, add that ID:
+
+```json
+{
+  "ClientModPolicy": {
+    "AllowModIds": ["examplemod"]
+  }
+}
+```
+
+Merge this object into the top level of `stratum.json` and keep its existing settings. A server universal mod is already allowed when `IncludeServerUniversalMods` is `true`.
 
 ## Config
 
@@ -41,6 +53,6 @@ In `stratum.json`, under `ClientModPolicy`:
 | `ClientModPolicy.IncludeServerUniversalMods` | `true` | Allows the mods the server marks as universal. |
 | `ClientModPolicy.AllowModIds` | `[]` | Extra mod IDs to allow. |
 
-## Test before you turn it on
+## Roll it out safely
 
-Join the server with a client that has your usual mods. Then join with a client that has none. If your players have mods you did not expect, add their IDs to `AllowModIds` before you enable the policy on the live server.
+Keep `Enabled` set to `false` while you collect IDs. Add the IDs you intend to allow, then enable the policy during a test session or maintenance window. Test with one client that has an allowed mod and one with an unlisted mod. The first should join; the second should be disconnected. If a regular player gets disconnected, turn the policy off, add the missing ID, and try again.
