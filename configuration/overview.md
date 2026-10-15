@@ -31,6 +31,8 @@ Use these commands while the server runs:
 
 Edit the file, then run `/stratum reload` in-game. Without the reload, the edit is still only on disk.
 
+A file that is not valid JSON is not loaded. The server then runs with default settings in memory, and the next save writes those defaults over the three files. After every edit, check the log for `Failed to load config`.
+
 Stratum keeps the settings in memory. Several actions write all three files from memory, including `/stratum set`, `/stratum save`, and the `/friendlyfire` and `/pvecombat` toggles. An edit that you have not reloaded is overwritten at the next write.
 
 Some settings take effect only at startup, such as the Windows timer resolution. Restart the server after a change to one of them.

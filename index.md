@@ -13,7 +13,7 @@ If this is your first time, read [Installation](/docs/getting-started/installati
 
 ## Find your way around
 
-- Getting Started covers installing, the first run, updating, and running the server as a service.
+- Getting Started covers installing, the first run, updating, running the server as a service, and moving from the stock server.
 - Configuration covers the config files, the settings you will touch most, performance, backups, and privacy.
 - Commands lists the player, staff, and admin commands, and the privileges that gate them.
 - Moderation covers the moderation tools, groups, kits, class changes, and the anticheat.

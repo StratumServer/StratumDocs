@@ -46,7 +46,7 @@ Sends anonymous statistics to the Stratum statistics endpoint. See [Privacy and 
 | `Hardening.PreserveVanillaProtocol` | `true` | Protocol compatibility switch. Leave at the default |
 | `Hardening.PacketMonitoring` | `true` | Monitors packet traffic. `/stratum packets` shows the current state |
 | `Hardening.BlockBreakGuards` | `true` | Master switch for block break validation. Its settings are in `BlockBreakGuards` |
-| `Hardening.EntityGuards` | `false` | Turns the entity guard on. Off by default |
+| `Hardening.EntityGuards` | `false` | Shown in the status output. This build applies no entity guard, so the value has no effect |
 | `Hardening.EntityPacketRangeGuard` | `true` | Limits entity packets to players in range |
 | `Hardening.BlockEntityPacketRangeGuard` | `true` | Limits block entity packets to players in range |
 

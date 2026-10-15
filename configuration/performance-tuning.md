@@ -6,7 +6,7 @@ categoryOrder: 2
 order: 5
 ---
 
-This page covers `stratum-performance.json`, the file that holds the load settings. Most servers can leave these at their defaults. Start with `/stratum timings` and `/stratum performance`. They show where the server spends its time, so you change the setting that matches the problem.
+This page covers `stratum-performance.json`, the file that holds the load settings. The keys below are the names inside that file. To change one in game, add the `Performance.` prefix, for example `/stratum set Performance.ChunkSending.MaxChunksPerServerTick 384`. Most servers can leave these at their defaults. Start with `/stratum timings` and `/stratum performance`. They show where the server spends its time, so you change the setting that matches the problem.
 
 ## Read the current state
 

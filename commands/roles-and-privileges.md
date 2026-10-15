@@ -79,9 +79,8 @@ Grant these to the roles your players use. On a fresh server, the base player ro
 | `stratum.info` | `/rules`, `/discord`, `/website`, `/motd` | `Commands.InfoCommands` |
 | `stratum.classchange` | `/class` | `Commands.ClassChange` |
 | `stratum.kits` | `/kit` | `Commands.Kits` |
-| `stratum.coopcombat` | `/pvecombat` | `Commands.CoopCombat` |
 
-**Note:** roles with auto-grant (normally `admin`) receive every Stratum privilege automatically, including `stratum.kits`. Give kit access to other roles explicitly.
+**Note:** roles with auto-grant (normally `admin`) receive the Stratum privileges registered on the server automatically, including `stratum.kits`. Give kit access to other roles explicitly.
 
 ## Staff privileges
 
@@ -109,10 +108,11 @@ Grant these to your staff roles.
 | `stratum.friendlyfire` | `/friendlyfire` | `Commands.FriendlyFire` |
 | `stratum.clearitems` | `/clearitems` | `Commands.ClearItems` |
 | `stratum.restart` | `/restart` | `Commands.Restart` |
+| `stratum.coopcombat` | `/pvecombat` | `Commands.CoopCombat` |
 
 **Note:** `stratum.kitedit` is registered like every other Stratum privilege, so roles with auto-grant (normally `admin`) receive it. Give it to other roles explicitly.
 
-**Exception:** `stratum.revive`, `stratum.restart`, and `stratum.clearitems` are not in the access list that `/stratum access` shows, and roles with auto-grant do not receive them. Grant them to your admin role with `/roles grant admin <privilege>` if you want admins to use those commands. The server console is not checked against these privileges.
+**Exception:** `stratum.revive`, `stratum.restart`, and `stratum.clearitems` are not in the access list that `/stratum access` shows, and roles with auto-grant do not receive them. Grant them from the server console with `/roles grant admin <privilege>`, because an admin in game cannot grant a privilege the admin does not hold. The server console is not checked against these privileges.
 
 ## Admin privileges
 
@@ -131,7 +131,7 @@ These use the built-in Vintage Story `controlserver` privilege or a vanilla equi
 
 | Privilege | Config key | Purpose |
 |---|---|---|
-| `stratum.privacy.bypass` | `PlayerPrivacy.StaffOverride` | Lets staff see real map pins when `PlayerPrivacy` is enabled |
+| `stratum.privacy.bypass` | `PlayerPrivacy.StaffOverride` | Lets staff see real map pins when `PlayerPrivacy` is enabled. Not registered on the current release, so grant it explicitly |
 
 ## Changing a command's privilege
 

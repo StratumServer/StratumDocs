@@ -8,6 +8,8 @@ order: 2
 
 This page lists the main staff and admin commands Stratum adds. Most require a specific privilege set in `stratum-commands.json`. Run `/stratum access` to see which commands are enabled and what privilege each requires on your server.
 
+`/revive`, `/restart`, and `/clearitems` are not registered as privileges on the current release. `/stratum access` does not list them, and roles with auto-grant do not receive them. Grant them from the server console with `/roles grant <role> <privilege>`, then check the result with `/roles info <role>`.
+
 Do not type the `[` and `]` in syntax examples. They mark optional arguments.
 
 ## Investigation
@@ -471,6 +473,72 @@ Manages player groups with staff authority.
 
 **Config key:** `Commands.GroupAdmin` | **Default privilege:** `manageotherplayergroups`
 
+## Teleport and items
+
+### /tp
+
+```
+/tp <source> <target>
+```
+
+Teleports one or more players or entities. `source` is a player name, a comma-separated list such as `luke,alice,bob`, or a selector: `@all`, `@staff`, `@admin`, `@mod`, or `@<role code>`. `target` is a player name or a position.
+
+Examples: `/tp Luke Hayden`, `/tp luke,alice,bob hayden`, `/tp @staff hayden`.
+
+**Default privilege:** `tp` (vanilla)
+
+---
+
+### /giveitem
+
+```
+/giveitem <item code> [quantity] [target] [attributes]
+```
+
+Gives items to a player. `quantity` defaults to 1. `target` accepts the same names and selectors as `/tp`. If you leave out the target, the items go to you.
+
+**Default privilege:** `gamemode` (vanilla)
+
+---
+
+### /giveblock
+
+```
+/giveblock <block code> [quantity] [target] [attributes]
+```
+
+Gives blocks to a player, with the same arguments and target rules as `/giveitem`.
+
+**Default privilege:** `gamemode` (vanilla)
+
+---
+
+### /uptime
+
+```
+/uptime
+```
+
+Shows how long the server has been running.
+
+**Default privilege:** `chat`
+
+---
+
+## Stratum command
+
+### /stratum
+
+```
+/stratum <action>
+```
+
+The main Stratum command. It needs `controlserver`. Actions include `status`, `version`, `update`, `health`, `reload`, `preflight`, `packets`, `performance`, `timings`, `players`, `player`, `chunks`, `entities`, `queues`, `pathfinding`, `doctor`, `regions`, `ac`, `access`, `chat`, `pregen`, `get`, `set`, and `save`.
+
+Settings are read and changed with `/stratum get`, `/stratum set`, and `/stratum save`, as described in [Configuration](/docs/configuration/overview). Timings use `/stratum timings start`, `stop`, `reset`, and `report`. `/stratum access` shows which commands are enabled and the privilege each one needs.
+
+---
+
 ## Quick reference
 
 | Command | What it does | Default privilege |
@@ -512,5 +580,10 @@ Manages player groups with staff authority.
 | `/clearitems` | Clear ground items | `stratum.clearitems` |
 | `/restart <minutes>` | Schedule restart | `stratum.restart` |
 | `/tps` | Current TPS | `controlserver` |
+| `/tp <source> <target>` | Teleport players or entities | `tp` |
+| `/giveitem <item code> [quantity] [target]` | Give items | `gamemode` |
+| `/giveblock <block code> [quantity] [target]` | Give blocks | `gamemode` |
+| `/uptime` | Server uptime | `chat` |
+| `/stratum <action>` | Stratum's main command | `controlserver` |
 | `/roles` | Edit roles | `controlserver` |
 | `/group admin` | Group administration | `manageotherplayergroups` |

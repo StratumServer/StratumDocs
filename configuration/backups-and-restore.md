@@ -10,6 +10,8 @@ Stratum can make world backups on a schedule. Backups are off by default.
 
 ## Turn backups on
 
+The backup scheduler starts when the server starts. Restart the server after you turn backups on. The log then shows `backup scheduler armed`.
+
 ```
 /stratum set Backup.Enabled true
 ```

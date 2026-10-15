@@ -67,7 +67,7 @@ Stratum does not provide an interactive console under systemd. To run commands o
 ```bash
 sudo systemctl stop stratum
 cd /opt/stratum
-./StratumServer --dataPath /srv/stratum/data
+sudo -u stratum ./StratumServer --dataPath /srv/stratum/data
 sudo systemctl start stratum
 ```
 
@@ -75,11 +75,13 @@ sudo systemctl start stratum
 
 Run `/restart 30` in game to restart the server in 30 minutes. Players get countdown messages. The command needs the `stratum.restart` privilege. Roles with auto-grant, normally `admin`, do not receive it, so grant it with `/roles grant admin stratum.restart` if admins should use it.
 
+Thirty seconds before a scheduled restart, players are warned to pick up their items. The items still on the ground are removed at the moment of the restart. This is on by default, and you can turn it off with `Performance.Restart.ClearGroundItemsBeforeStop`.
+
 By default the server exits with code `0` on restart. systemd treats a clean exit as success, so `Restart=on-failure` does not start the server again after `/restart`. To have `/restart` bring the server back, set `Performance.Restart.ExitCode` in `stratum-performance.json` to a non-zero value, such as `1`, and keep `Restart=on-failure`. `Restart=always` also starts the server after a clean stop, which you may not want.
 
 ## Firewall
 
-Open the server port. The default port is `42420` over TCP:
+Open the server port. The default port is `42420`, over both TCP and UDP:
 
 ```bash
 sudo ufw allow 42420/tcp

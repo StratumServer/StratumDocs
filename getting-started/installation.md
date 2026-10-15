@@ -42,6 +42,8 @@ On Linux:
 ./StratumServer
 ```
 
+On Linux, if the launcher does not start and the shell says `Permission denied`, make it executable with `chmod +x StratumServer`.
+
 The first run prepares the vanilla server build that matches the release, then starts the patched server. Preparation runs once. [First launch](/docs/getting-started/first-launch) describes the steps.
 
 ## Data folder
