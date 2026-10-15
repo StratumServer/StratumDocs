@@ -1,6 +1,6 @@
 ---
 title: "Entity tick throttling"
-description: "How Stratum throttles entity ticking by distance, what is exempt, and how to test against it."
+description: "How Stratum throttles entity ticking by distance, what is exempt, and how to restore vanilla behavior."
 category: "Configuration"
 categoryOrder: 2
 order: 3
@@ -10,9 +10,8 @@ Stratum throttles server-side entity ticking by distance to the nearest player. 
 settings live under `Performance.EntityTicking` in the `stratum-performance.json`
 sidecar, and the feature is on by default. A `Performance` block in `stratum.json` is
 read only when no sidecar exists, and the next save moves it into the sidecar. This
-page covers the exact semantics: what anchors the distance bands, what is exempt, and
-what to expect when testing against the throttle. All values below are the shipped
-defaults.
+page explains what anchors the distance bands, what is exempt, and how to restore
+vanilla behavior. All values below are the shipped defaults.
 
 ## Distance bands
 
@@ -97,11 +96,10 @@ and `HardDespawnEnabled` stays false (both apply whatever `Enabled` says). The p
 activation range (`Performance.Physics.ActivationRangeEnabled`) is a separate throttle
 and is not affected.
 
-## Testing against the throttle
+## Notes for test authors
 
-Hard-won notes for anyone writing scenarios or load tests against this system (this
-is how the [StratumParity](https://github.com/Pixnop/StratumParity) differential
-suite pins these semantics down):
+The details below are for people writing automated scenarios or load tests. Server
+operators can skip this section.
 
 - **Your test client anchors as soon as the server admits it**, from wherever it
   spawned, even if it never gets past Connected. With no player entity online at all,
