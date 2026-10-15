@@ -27,8 +27,8 @@ Turn the anticheat on with `Anticheat.Enabled` in `stratum.json`. Each check has
 | Entity reach | Attacking or interacting with an entity from too far away. |
 | Block break progress | Breaking blocks faster than the tools allow. |
 | Movement | Moving too far or too fast, including step height and acceleration. |
-| Movement authority | Positions that do not match the server's record of where the player is. |
-| Combat | Attacks that do not fit the player's state. |
+| Position checks | Reported positions and block actions that do not fit what the server expects. |
+| Combat | Attacks that do not fit normal play. This check starts in monitor mode, so staff review its data with `/stratum ac` before stricter action is turned on. |
 | No fall | Taking no fall damage after a long drop. |
 | Multi break | Breaking several blocks in one action. |
 
