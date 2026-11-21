@@ -25,7 +25,7 @@ Each release has one zip per platform, named `stratum-<version>-<platform>.zip`:
 
 Get the zip for your platform from the [releases page](https://github.com/StratumServer/Stratum/releases).
 
-In the filename, `<version>` is the release tag without its leading `v`. For example, the tag `v1.22.7-stratum.2` produces a filename such as `stratum-1.22.7-stratum.2-linux-x64.zip`.
+In the filename, `<version>` is the release tag without its leading `v`. For example, the tag `v1.22.7-stratum.3` produces a filename such as `stratum-1.22.7-stratum.3-linux-x64.zip`.
 
 ## Run
 
