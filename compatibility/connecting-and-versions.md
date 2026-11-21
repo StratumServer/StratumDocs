@@ -29,7 +29,7 @@ Other common rejection screens tell the player what to fix:
 
 ## Stratum release version
 
-Each Stratum release tag includes the Vintage Story version it is built against and a Stratum revision, for example `1.22.7-stratum.2`. Run the release whose game version matches the server. If the server runs a release for an older game version, update the server, not the players.
+Each Stratum release tag includes the Vintage Story version it is built against and a Stratum revision, for example `1.22.7-stratum.3`. Run the release whose game version matches the server. If the server runs a release for an older game version, update the server, not the players.
 
 ## Check the server version
 

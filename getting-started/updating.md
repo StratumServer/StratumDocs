@@ -8,7 +8,7 @@ order: 3
 
 ## Version numbers
 
-Releases are tagged `v<vs-version>-stratum.<rev>`, for example `v1.22.7-stratum.2`.
+Releases are tagged `v<vs-version>-stratum.<rev>`, for example `v1.22.7-stratum.3`.
 
 - The `vs-version` part is the Vintage Story release the build is patched against.
 - The `stratum.<rev>` part counts the Stratum releases on that base.
